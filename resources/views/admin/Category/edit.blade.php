@@ -3,7 +3,7 @@
 @section('content')
  <!-- Content Header (Page header) -->
  <section class="content">
- <form action="{{route('category.update' , $categories->id )}}" method="POST" enctype="multipart/form-data">
+ <form action="{{route('admin.category.update' , $categories->id )}}" method="POST" enctype="multipart/form-data">
     <!-- 2 column grid layout with text inputs for the first and last names -->
     @csrf
   @method('PUT')

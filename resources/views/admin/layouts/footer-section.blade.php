@@ -1,4 +1,4 @@
-
+ 
     <script src="{{ asset('admin/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
@@ -32,7 +32,10 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('admin/dist/js/app.min.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    {{-- <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script> --}}
+    <script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
+     <script src="{{ asset('select/js/select2.full.js') }}"></script>
+      <script src="{{ asset('select/js/select2.full.min.js') }}"></script>
+       <script src="{{ asset('select/js/select2.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('admin/dist/js/demo.js') }}"></script>
     <script src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>

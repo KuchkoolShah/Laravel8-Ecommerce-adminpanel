@@ -22,7 +22,7 @@
       
         <div class="box">
           <div class="box-header">
-            <h2 class="box-title text-center"><a href="{{route('category.create')}}">Add New  Category </a></h2>
+            <h2 class="box-title text-center"><a href="{{route('admin.category.create')}}">Add New  Category </a></h2>
           </div>
           <!-- /.box-header -->
           <div class="box-body">
@@ -58,8 +58,8 @@
         </form>
       </td>
       @else
-                <td><a href="{{route('category.edit' , $category->id)}}"><span data-toggle="tooltip" data-placement="top" title="Edit" class="glyphicon glyphicon-edit"></span><a>|
-                <form id="delete-form-{{ $category->id }}" method="post" action="{{ route('category.destroy',$category->id) }}" style="display: none">
+                <td><a href="{{route('admin.category.edit' , $category->id)}}"><span data-toggle="tooltip" data-placement="top" title="Edit" class="glyphicon glyphicon-edit"></span><a>|
+                <form id="delete-form-{{ $category->id }}" method="post" action="{{ route('admin. category.destroy',$category->id) }}" style="display: none">
                   {{ csrf_field() }}
                   {{ method_field('DELETE') }}
                 </form>

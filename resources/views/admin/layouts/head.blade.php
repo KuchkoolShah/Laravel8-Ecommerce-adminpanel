@@ -24,6 +24,8 @@
 <link rel="stylesheet" href="{{ asset('admin/plugins/datepicker/datepicker3.css') }}">
 <!-- Daterange picker -->
 <link rel="stylesheet" href="{{ asset('admin/plugins/daterangepicker/daterangepicker.css') }}">
+<link rel="stylesheet" href="{{ asset('select/css/select2.css') }}">
+<link rel="stylesheet" href="{{ asset('select/css/select2.min.css') }}">
 <!-- bootstrap wysihtml5 - text editor -->
 <link rel="stylesheet" href="{{ asset('admin/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css') }}">
 <link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.css') }}">

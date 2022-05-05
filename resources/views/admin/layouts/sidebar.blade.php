@@ -62,7 +62,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="{{route('category.index')}}"><i class="fa fa-circle-o"></i>All Category</a></li>
+                            <li><a href="{{route('admin.category.index')}}"><i class="fa fa-circle-o"></i>All Category</a></li>
                            
                            
                             <li><a href="{{route('category.trash')}}"><i class="fa fa-circle-o"></i>Trash Category</a></li>
@@ -82,6 +82,17 @@
                            
                             <li><a href=""><i class="fa fa-circle-o"></i>Delete Product</a></li>
                         </ul>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="{{route('admin.profile.index')}}">
+                            <i class="fa fa-pie-chart"></i>
+                            <span>user</span>
+                            <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                       
                     </li>
 
 

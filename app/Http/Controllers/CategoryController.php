@@ -145,4 +145,7 @@ public function trash()
   
         return redirect()->route('category.index');
     }
+
+
+  
 }

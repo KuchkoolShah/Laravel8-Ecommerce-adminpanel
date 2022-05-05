@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -23,6 +23,14 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
+    
+    public function single(Product $product){
+      return view('products.single', compact('product'));
+    }
+
     public function create()
     {
         //
@@ -47,7 +55,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        //
+         $categories = Category::with('childrens')->get();
+       $products = Product::with('categories')->paginate(3);
+       return view('products.all', compact('categories','products'));
     }
 
     /**
@@ -105,4 +115,35 @@ class ProductController extends Controller
     {
         //
     }
+
+
+     public function show_home()
+    {
+        // $producted = product::all();
+        // return view('customer.partials.shop',compact('producted'));
+    }
+
+
+     public function about_products(Product $product)
+    {
+       return view('customer.abouts');
+    }
+
+     public function contact_products(Product $product)
+    {
+       return view('customer.contact');
+    }
+
+
+     public function shop_products(Product $product)
+    {
+       $producted = product::paginate(6);
+        return view('customer.shop',compact('producted'));
+    }
+
+  
+
+
+  
+
 }
