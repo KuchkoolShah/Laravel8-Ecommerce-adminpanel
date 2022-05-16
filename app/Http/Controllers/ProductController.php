@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\carousel;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -119,8 +120,10 @@ class ProductController extends Controller
 
      public function show_home()
     {
-        // $producted = product::all();
-        // return view('customer.partials.shop',compact('producted'));
+        $producted = product::paginate(5);
+          $products = product::paginate(5);
+         $carousel = carousel::all();
+         return view('customer.home' , compact('carousel' , 'products' , 'producted'));
     }
 
 
@@ -137,8 +140,9 @@ class ProductController extends Controller
 
      public function shop_products(Product $product)
     {
+        $categories = Category::paginate(6);
        $producted = product::paginate(6);
-        return view('customer.shop',compact('producted'));
+        return view('customer.shop',compact('producted' , 'categories'));
     }
 
   

@@ -17,21 +17,21 @@
 						<div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
 							<div class="contact-box contact-form">
 								<h2 class="box-title">Leave a Message</h2>
-								<form action="#" method="get" name="frm-contact">
-
+								<form  method="POST" action="{{route('uers.contact') }}" name="frm-contact">
+									@csrf
 									<label for="name">Name<span>*</span></label>
 									<input type="text" value="" id="name" name="name">
 
 									<label for="email">Email<span>*</span></label>
-									<input type="text" value="" id="email" name="email">
+									<input type="email" value="" id="email" name="email">
 
 									<label for="phone">Number Phone</label>
 									<input type="text" value="" id="phone" name="phone">
 
 									<label for="comment">Comment</label>
-									<textarea name="comment" id="comment"></textarea>
+									<textarea name="description" id="comment"></textarea>
 
-									<input type="submit" name="ok" value="Submit">
+									<input type="submit" name="submit" value="Submit">
 									
 								</form>
 							</div>
@@ -49,7 +49,7 @@
 										<i class="fa fa-envelope" aria-hidden="true"></i>
 										<div class="right-info">
 											<b>Email</b>
-											<p>Support1@Mercado.com</p>
+											<p>kachkoolshah@gmail.com</p>
 										</div>
 									</div>
 
@@ -57,7 +57,7 @@
 										<i class="fa fa-phone" aria-hidden="true"></i>
 										<div class="right-info">
 											<b>Phone</b>
-											<p>0123-465-789-111</p>
+											<p>03018943278</p>
 										</div>
 									</div>
 
@@ -65,7 +65,7 @@
 										<i class="fa fa-map-marker" aria-hidden="true"></i>
 										<div class="right-info">
 											<b>Mail Office</b>
-											<p>Sed ut perspiciatis unde omnis<br>Street Name, Los Angeles</p>
+											<p>namal bala  , nizampure ,  nowshere ,  kpk, pakistan</p>
 										</div>
 									</div>
 

@@ -1,7 +1,7 @@
 <footer id="footer">
 		<div class="wrap-footer-content footer-style-1">
 
-			<div class="wrap-function-info">
+			<div class="wrap-function-info"  style="display: none;">
 				<div class="container">
 					<ul>
 						<li class="fc-info-item">
@@ -55,15 +55,15 @@
 										<ul>
 											<li>
 												<i class="fa fa-map-marker" aria-hidden="true"></i>
-												<p class="contact-txt">45 Grand Central Terminal New York,NY 1017 United State USA</p>
+												<p class="contact-txt">Namal bala nizampure , Nowshera , KPK  , Pakistan</p>
 											</li>
 											<li>
 												<i class="fa fa-phone" aria-hidden="true"></i>
-												<p class="contact-txt">(+123) 456 789 - (+123) 666 888</p>
+												<p class="contact-txt">03018943278</p>
 											</li>
 											<li>
 												<i class="fa fa-envelope" aria-hidden="true"></i>
-												<p class="contact-txt">Contact@yourcompany.com</p>
+												<p class="contact-txt">Kachkoolhah@gmail.com</p>
 											</li>											
 										</ul>
 									</div>
@@ -78,7 +78,7 @@
 								<div class="item-content">
 									<div class="wrap-hotline-footer">
 										<span class="desc">Call Us toll Free</span>
-										<b class="phone-number">(+123) 456 789 - (+123) 666 888</b>
+										<b class="phone-number">03018943278</b>
 									</div>
 								</div>
 							</div>
@@ -139,7 +139,7 @@
 								<h3 class="item-header">We Using Safe Payments:</h3>
 								<div class="item-content">
 									<div class="wrap-list-item wrap-gallery">
-										<img src="assets/images/payment.png" style="max-width: 260px;">
+										<img src="{{asset('assets/images/payment.png')}}" style="max-width: 260px;">
 									</div>
 								</div>
 							</div>
@@ -168,8 +168,8 @@
 								<div class="item-content">
 									<div class="wrap-list-item apps-list">
 										<ul>
-											<li><a href="#" class="link-to-item" title="our application on apple store"><figure><img src="assets/images/brands/apple-store.png" alt="apple store" width="128" height="36"></figure></a></li>
-											<li><a href="#" class="link-to-item" title="our application on google play store"><figure><img src="assets/images/brands/google-play-store.png" alt="google play store" width="128" height="36"></figure></a></li>
+											<li><a href="#" class="link-to-item" title="our application on apple store"><figure><img src="{{asset('assets/images/brands/apple-store.png')}}" alt="apple store" width="128" height="36"></figure></a></li>
+											<li><a href="#" class="link-to-item" title="our application on google play store"><figure><img src="{{asset('assets/images/brands/google-play-store.png')}}" alt="google play store" width="128" height="36"></figure></a></li>
 										</ul>
 									</div>
 								</div>
@@ -179,7 +179,7 @@
 					</div>
 				</div>
 
-				<div class="wrap-back-link">
+				<div class="wrap-back-link" style="display: none">
 					<div class="container">
 						<div class="back-link-box">
 							<h3 class="backlink-title">Quick Links</h3>

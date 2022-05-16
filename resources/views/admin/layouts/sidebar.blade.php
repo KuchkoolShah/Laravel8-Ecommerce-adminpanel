@@ -94,6 +94,17 @@
                         </a>
                        
                     </li>
+                     <li class="treeview">
+                        <a href="{{route('admin.contact.index')}}">
+                            <i class="fa fa-pie-chart"></i>
+                            <span>Contact_us</span>
+                            <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                       
+                    </li>
+
 
 
     

@@ -41,7 +41,7 @@
 									<option value="16">16 per page</option>
 									<option value="18">18 per page</option>
 									<option value="21">21 per page</option>
-									<option value="24">24 per page</option>
+										<option value="24">24 per page</option>
 									<option value="30">30 per page</option>
 									<option value="32">32 per page</option>
 								</select><div class="chosen-container chosen-container-single" style="width: 92px;" title=""><a class="chosen-single"><span>12 per page</span><div><b></b></div></a><div class="chosen-drop"><div class="chosen-search"><input type="text" autocomplete="off"></div><ul class="chosen-results"></ul></div></div>
@@ -71,7 +71,15 @@
 									<div class="product-info">
 										<a href="#" class="product-name"><span>{{$product->name}}</span></a>
 										<div class="wrap-price"><span class="product-price">${{$product->regular_price}}</span></div>
-										<a href="#" class="btn add-to-cart">Add To Cart</a>
+										<form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" value="{{ $product->id }}" name="id">
+                        <input type="hidden" value="{{ $product->name }}" name="name">
+                        <input type="hidden" value="{{ $product->regular_price }}" name="price">
+                        <input type="hidden" value="{{ $product->image }}"  name="image">
+                        <input type="hidden" value="1" name="quantity">
+                        <button class="px-4 py-2 text-white bg-blue-800 rounded">Add To Cart</button>
+                    </form>
 									</div>
 								</div>
 							</li>
@@ -97,47 +105,18 @@
 						<h2 class="widget-title">All Categories</h2>
 						<div class="widget-content">
 							<ul class="list-category">
-								<li class="category-item has-child-cate">
-									<a href="#" class="cate-link">Fashion &amp; Accessories</a>
-									<span class="toggle-control">+</span>
-									<ul class="sub-cate">
-										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
-									</ul>
-								</li>
-								<li class="category-item has-child-cate">
-									<a href="#" class="cate-link">Furnitures &amp; Home Decors</a>
-									<span class="toggle-control">+</span>
-									<ul class="sub-cate">
-										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
-									</ul>
-								</li>
-								<li class="category-item has-child-cate">
-									<a href="#" class="cate-link">Digital &amp; Electronics</a>
-									<span class="toggle-control">+</span>
-									<ul class="sub-cate">
-										<li class="category-item"><a href="#" class="cate-link">Batteries (22)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Headsets (16)</a></li>
-										<li class="category-item"><a href="#" class="cate-link">Screen (28)</a></li>
-									</ul>
-								</li>
+								
+								
+								 @foreach($categories as $category)
 								<li class="category-item">
-									<a href="#" class="cate-link">Tools &amp; Equipments</a>
+									<a href="#" class="cate-link">{{$category->name}}</a>
 								</li>
-								<li class="category-item">
-									<a href="#" class="cate-link">Kid’s Toys</a>
-								</li>
-								<li class="category-item">
-									<a href="#" class="cate-link">Organics &amp; Spa</a>
-								</li>
+								 @endforeach
 							</ul>
 						</div>
 					</div><!-- Categories widget-->
 
-					<div class="widget mercado-widget filter-widget brand-widget">
+					<div class="widget mercado-widget filter-widget brand-widget" style="display: none;">
 						<h2 class="widget-title">Brand</h2>
 						<div class="widget-content">
 							<ul class="list-style vertical-list list-limited" data-show="6">
@@ -156,7 +135,7 @@
 						</div>
 					</div><!-- brand widget-->
 
-					<div class="widget mercado-widget filter-widget price-filter">
+					<div class="widget mercado-widget filter-widget price-filter" style="display: none;">
 						<h2 class="widget-title">Price</h2>
 						<div class="widget-content">
 							<div id="slider-range" class="ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"><div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 15%; width: 45%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 15%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 60%;"></span></div>
@@ -168,7 +147,7 @@
 						</div>
 					</div><!-- Price-->
 
-					<div class="widget mercado-widget filter-widget">
+					<div class="widget mercado-widget filter-widget"  style="display: none;">
 						<h2 class="widget-title">Color</h2>
 						<div class="widget-content">
 							<ul class="list-style vertical-list has-count-index">
@@ -182,7 +161,7 @@
 						</div>
 					</div><!-- Color -->
 
-					<div class="widget mercado-widget filter-widget">
+					<div class="widget mercado-widget filter-widget"  style="display: none;">
 						<h2 class="widget-title">Size</h2>
 						<div class="widget-content">
 							<ul class="list-style inline-round ">

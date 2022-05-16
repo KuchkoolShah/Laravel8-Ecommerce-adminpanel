@@ -10,19 +10,19 @@
 	<header id="header" class="header header-style-1">
 		<div class="container-fluid">
 			<div class="row">
-				<div class="topbar-menu-area">
+				<div class="topbar-menu-area" >
 					<div class="container">
 						<div class="topbar-menu left-menu">
 							<ul>
 								<li class="menu-item" >
-									<a title="Hotline: (+123) 456 789" href="#" ><span class="icon label-before fa fa-mobile"></span>Hotline: (+123) 456 789</a>
+									<a title="Hotline: (+123) 456 789" href="#" ><span class="icon label-before fa fa-mobile"></span>Hotline:03018943278</a>
 								</li>
 							</ul>
 						</div>
 						<div class="topbar-menu right-menu">
 							<ul>
-								<li class="menu-item" ><a title="Register or Login" href="">Login</a></li>
-								<li class="menu-item" ><a title="Register or Login" href="register.html">Register</a></li>
+								<li class="menu-item" ><a title="Register or Login" href="{{route('uers.login')}}">Login</a></li>
+								<li class="menu-item" ><a title="Register or Login" href="{{route('uers.register')}}">Register</a></li>
 								<li class="menu-item lang-menu menu-item-has-children parent">
 									<a title="English" href="#"><span class="img label-before"><img src="assets/images/lang-en.png" alt="lang-en"></span>English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<ul class="submenu lang" >
@@ -50,7 +50,7 @@
 					</div>
 				</div>
 
-				<div class="container">
+				<div class="container" style="display: none">
 					<div class="mid-section main-info-area">
 
 						<div class="wrap-logo-top left-section">
@@ -107,7 +107,7 @@
 				</div>
 
 				<div class="nav-section header-sticky">
-					<div class="header-nav-section">
+					<div class="header-nav-section" style="display: none">
 						<div class="container">
 							<ul class="nav menu-nav clone-main-menu" id="mercado_haead_menu" data-menuname="Sale Info" >
 								<li class="menu-item"><a href="#" class="link-term">Weekly Featured</a><span class="nav-label hot-label">hot</span></li>
@@ -123,7 +123,7 @@
 						<div class="container">
 							<ul class="nav primary clone-main-menu" id="mercado_main" data-menuname="Main menu" >
 								<li class="menu-item home-icon">
-									<a href="" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
+									<a href="{{route('products.home')}}" class="link-term mercado-item-title"><i class="fa fa-home" aria-hidden="true"></i></a>
 								</li>
 								<li class="menu-item">
 									<a href="{{route('products.about')}}" class="link-term mercado-item-title">About Us</a>
@@ -132,14 +132,40 @@
 									<a href="{{route('products.shop')}}" class="link-term mercado-item-title">Shop</a>
 								</li>
 								<li class="menu-item">
-									<a href="" class="link-term mercado-item-title">Cart</a>
+									<a href="{{route('cart.list')}}" class="link-term mercado-item-title">Cart  <span class="badge bg-secondary">{{ Cart::getTotalQuantity()}}</span></a>
 								</li>
 								<li class="menu-item">
 									<a href="checkout.html" class="link-term mercado-item-title">Checkout</a>
 								</li>
 								<li class="menu-item">
 									<a href="{{route('products.contact')}}" class="link-term mercado-item-title">Contact Us</a>
-								</li>																	
+								</li>
+								<li class="menu-item">
+
+									
+								
+								
+									<!-- Left Side Of Navbar -->
+									
+									<!-- Right Side Of Navbar -->
+									
+									<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+										{{ Auth::user()->name  ??''}}
+									</a>
+									<div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item" href="{{ route('logout') }}"
+											onclick="event.preventDefault();
+											document.getElementById('logout-form').submit();">
+											{{ __('Logout') }}
+										</a>
+										<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+											@csrf
+										</form>
+									
+
+
+</div>
+</li>
 							</ul>
 						</div>
 					</div>
