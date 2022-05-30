@@ -23,7 +23,7 @@ class RedirectIfAuthenticated
             if(Auth::user()->role->name == 'admin' ?? '')
                 return redirect('/dashboard');
             else
-                return redirect('/home');
+                return redirect('/products/show/home');
         }
 
         return $next($request);

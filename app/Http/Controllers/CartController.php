@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function cartList()
     {
         $cartItems = \Cart::getContent();
@@ -63,4 +68,12 @@ class CartController extends Controller
 
         return redirect()->route('cart.list');
     }
+    //   public function cartListed()
+    // {
+    //     $cartItem = \Cart::getContent();
+    //      dd($cartItem);
+    //     //return view('customer.checkout', compact('cartItem'));
+    // }
+
+
 }

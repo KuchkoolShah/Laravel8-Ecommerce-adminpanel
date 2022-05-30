@@ -7,8 +7,9 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                <p>Kuchkool_shah</p>
+
+                
             </div>
         </div>
         <!-- search form -->
@@ -65,7 +66,7 @@
                             <li><a href="{{route('admin.category.index')}}"><i class="fa fa-circle-o"></i>All Category</a></li>
                            
                            
-                            <li><a href="{{route('category.trash')}}"><i class="fa fa-circle-o"></i>Trash Category</a></li>
+                            <li><a href=""><i class="fa fa-circle-o"></i>Trash Category</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -77,7 +78,7 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="{{route('product.index')}}"><i class="fa fa-circle-o"></i>All Product</a></li>
+                            <li><a href="{{route('admin.product.index')}}"><i class="fa fa-circle-o"></i>All Product</a></li>
                            
                            
                             <li><a href=""><i class="fa fa-circle-o"></i>Delete Product</a></li>
@@ -104,10 +105,16 @@
                         </a>
                        
                     </li>
-
-
-
-    
+                        <li class="treeview">
+                        <a href="{{route('admin.order.index')}}">
+                            <i class="fa fa-pie-chart"></i>
+                            <span>order</span>
+                            <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                       
+                    </li>
 
           
             <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
@@ -115,6 +122,15 @@
             <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
             <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
             <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+            <li><a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form></li>
         </ul>
     </section>
     <!-- /.sidebar -->

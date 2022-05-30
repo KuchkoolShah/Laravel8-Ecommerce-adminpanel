@@ -9,7 +9,7 @@ use App\Models\Country;
 use App\Models\State;
 use App\Models\City;
 use Illuminate\Http\Request;
-
+use DB;
 class ProfileController extends Controller
 {
     /**

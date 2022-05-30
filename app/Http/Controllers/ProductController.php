@@ -34,7 +34,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        //
+       $categories = Category::all();
+        return view('admin.Product.create',compact('categories'));
     }
 
     /**
@@ -45,7 +46,28 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $product = new  Product();
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('uploads'), $imageName);
+                            }
+            
+            $product->image = $imageName;
+            $product->name = $request->name;
+            $product->slug = $request->slug;
+             $product->SKU = $request->SKU;
+            $product->regular_price=$request->regular_price;
+            $product->stock_status= $request->stock_status;
+            $product->quantity= $request->quantity;
+            $product->description= $request->description;
+            //dd($product);
+            $saved = $product->save();
+
+            if($saved)
+            return redirect()->route('product.admin.index')->with('message','product update Successfully!');
+        else
+            return back()->with('message', 'Error Updating Product');
+    
     }
 
     /**
@@ -121,7 +143,8 @@ class ProductController extends Controller
      public function show_home()
     {
         $producted = product::paginate(5);
-          $products = product::paginate(5);
+       
+          $products = Product::paginate(5);
          $carousel = carousel::all();
          return view('customer.home' , compact('carousel' , 'products' , 'producted'));
     }
@@ -141,8 +164,9 @@ class ProductController extends Controller
      public function shop_products(Product $product)
     {
         $categories = Category::paginate(6);
-       $producted = product::paginate(6);
-        return view('customer.shop',compact('producted' , 'categories'));
+       $producted = product::paginate(15);
+        $popular_product = Product::inRandomOrder()->limit(5)->get();
+        return view('customer.shop',compact('producted' , 'categories' , 'popular_product'));
     }
 
   
