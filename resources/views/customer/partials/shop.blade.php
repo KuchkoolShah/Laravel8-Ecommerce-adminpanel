@@ -79,7 +79,9 @@
                         <input type="hidden" value="{{ $product->image }}"  name="image">
                         <input type="hidden" value="1" name="quantity">
                         <button class="px-4 py-2 text-white bg-blue-800 rounded">Add To Cart</button>
+                        	<a href="">  <button class="px-4 py-2 text-white bg-blue-800 rounded">Detail View</button></a>
                     </form>
+
 									</div>
 								</div>
 							</li>

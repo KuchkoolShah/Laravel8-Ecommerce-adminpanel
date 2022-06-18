@@ -46,7 +46,7 @@
         <td>{{@$user->profile->name}}</td>
         <td>{{@$user->email}}</td>
         <td>{{@$user->profile->slug}}</td>
-        <td>{{$user->role->name}}</td>
+        <td>{{$user->role->name ?? ''}}</td>
         <td>{{@$user->profile->address}}</td>
         <td><img src="{{asset('storage/'.@$user->profile->thumbnail)}}" alt="{{@$user->profile->name}}" class="img-responsive" height="50"/></td>
          <td>{{@$user->created_at}}</td>

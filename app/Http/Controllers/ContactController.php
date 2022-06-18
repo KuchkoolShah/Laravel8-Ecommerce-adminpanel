@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\contact;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\ContactStore;
 class ContactController extends Controller
 {
     /**
@@ -34,21 +34,30 @@ class ContactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactStore $request)
     {
-                    $contact = new contact;
+        
+
+
+
+                 $input = $request->all();
+        $contact =contact::create($input);
+      
+        return back()->with('success', 'User created successfully.');
+
+        //             $contact = new contact;
            
-            $contact->name = $request->name;
-             $contact->email = $request->email;
-            $contact->phone = $request->phone;
-            $contact->description= $request->description;
+        //     $contact->name = $request->name;
+        //      $contact->email = $request->email;
+        //     $contact->phone = $request->phone;
+        //     $contact->description= $request->description;
             
-            $saved = $contact->save();
-          //  dd($saved);
-            if($saved)
-            return redirect()->route('admin.contact.index')->with('message','Contact add Successfully!');
-        else
-            return back()->with('message', 'Error Updating contact');
+        //     $saved = $contact->save();
+        //   //  dd($saved);
+        //     if($saved)
+        //     return redirect()->route('admin.contact.index')->with('message','Contact add Successfully!');
+        // else
+        //     return back()->with('message', 'Error Updating contact');
     }
 
     /**

@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('price');
             $table->unsignedInteger('payment_id');
             $table->timestamps();
-            $table->softDeletes();
+          
         });
     }
 

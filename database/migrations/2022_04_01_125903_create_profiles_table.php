@@ -21,7 +21,7 @@ class CreateProfilesTable extends Migration
             $table->string('phone')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();
-            $table->softDeletes();
+          
         });
     }
 

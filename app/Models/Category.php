@@ -17,15 +17,12 @@ class Category extends Model
     
     protected $guarded = [];
 
-      use SoftDeletes;
-    protected $dates = ['deleted_at'];
-
-                public function childrens(){
-                    return $this->belongsToMany(Category::class,'category_parent','category_id','parent_id','category_id');
-                }
-        public function parents(){
-            return $this->belongsToMany(Category::class,'category_parent','category_id','parent_id');
-        }
+      public function childrens(){
+        return $this->belongsToMany(Category::class,'category_parent','parent_id','category_id');
+    }
+    public function parents(){
+        return $this->belongsToMany(Category::class,'category_parent','category_id','parent_id');
+    }
 
          public function products(){
         return $this->belongsToMany('App\Models\Product', 'category_product');

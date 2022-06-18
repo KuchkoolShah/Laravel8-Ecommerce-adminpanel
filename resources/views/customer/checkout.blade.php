@@ -2,18 +2,13 @@
 @section('css')
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 @endsection
 @section('content')
 <div class="row">
-  @php
+  <!-- @php
   $stripe_key = 'pk_test_51Js8LLCvJh510Wa3quVFHACktNoQZRV6dKAzDkUtbZS8Es3xly52jxd8E8YkjRcGTC1L3AmzHkW3YpdXEvPGe7N900W7zpm0fp';
-  @endphp
+  @endphp -->
   <div class="col-md-8 order-md-1">
     <h4 class="mb-3">Billing address</h4>
     <form action="{{route('checkout.store')}}" method="post" id="payment-form">
@@ -88,7 +83,7 @@
         
         
       </div>
-       <div class="form-group">
+      <!--  <div class="form-group">
                             <div class="card-header">
                                 <label for="card-element">
                                     Enter your credit card information
@@ -96,13 +91,13 @@
                             </div>
                             <div class="card-body">
                                 <div id="card-element">
-                                <!-- A Stripe Element will be inserted here. -->
+                                 A Stripe Element will be inserted here.
                                 </div>
-                                <!-- Used to display form errors. -->
+                                Used to display form errors.
                                 <div id="card-errors" role="alert"></div>
                                 <input type="hidden" name="plan" value="" />
                             </div>
-                        </div>
+                        </div> -->
                        
    
       
@@ -136,19 +131,15 @@
       @foreach ($cartItem as $item)
       <div class="mb-3">
         
-        <input type="hidden"name="product_id[]" class="form-control" id="address2"  value="{{$item->name }}">
+        <input type="hidden"name="product_id[]" class="form-control"   value="{{$item->name }}"  multiple>
         
       </div>
       @endforeach
       <div class="mb-3">
         
-        <input type="hidden"name="qty" class="form-control" value="{{ Cart::getTotalQuantity()}}">
+        <input type="hidden"name="qty" class="form-control" value="{{ Cart::getTotalQuantity()}}"   multiple>
         
-      </div> <div class="mb-3">
-      
-      <input type="hidden"name="qty" class="form-control" value="{{ Cart::getTotalQuantity()}}">
-      
-    </div>
+      </div>
   </div>
   <div class="mb-3">
     
@@ -161,12 +152,7 @@
     
   </div>
 </div>
-  <button
-                          id="card-button"
-                          class="btn btn-dark"
-                          type="submit"
-                          data-secret="{{ $intent }}"
-                        > Pay </button>
+  <button  type="submit"  name="submit" class="btn btn-block text-center btn-lg"> submit</button>
 
 
 </form>
@@ -181,7 +167,7 @@
   })
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://js.stripe.com/v3/"></script>
+<!-- <script src="https://js.stripe.com/v3/"></script>
     <script>
         // Custom styling can be passed to options when creating an Element.
         // (Note that this demo uses a wider set of styles than the guide below.)
@@ -244,6 +230,6 @@
                 }
             });
         });
-    </script>
+    </script> -->
 
 @endsection

@@ -5,20 +5,23 @@
 <li class="breadcrumb-item active" aria-current="page">Add/Edit users</li>
 @endsection
 @section('css')
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />		
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-      
+<link rel="stylesheet" href="{{ asset('admin/select2/select2.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/select2/select2.min.css') }}">	
+
+<script src="{{asset('admin/select2/select2.js') }}"></script>
+<script src="{{asset('admin/jquery/jquery.min.js') }}"></script>
+<script src="{{asset('admin/select2/select2.full.js') }}"></script>		
+<script src="{{asset('admin/select2/select2.min.js')}}"></script>
+
 @endsection
 @section('content')
 <h2 class="modal-title">Add/Edit users</h2>
-
-<form  action="" method="post" accept-charset="utf-8" enctype="multipart/form-data" class="ml-2">
+<div class="form-settng"> </div>
+<form  action="" method="post" accept-charset="utf-8" enctype="multipart/form-data" class="ml-5 pl-5">
 	<div class="row">
 		@csrf
 		
-		<div class="col-md-9">
+		<div class="col-md-6">
 			<div class="form-group row">
 				<div class="col-sm-12">
 					@if ($errors->any())
@@ -89,9 +92,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="row">
-			<h4 class="title">Address</h4>
-		</div>
+		
 		<div class="form-group row">
 			<div class="col-sm-12">
 				<label class="form-control-label">Address: </label>
@@ -101,40 +102,21 @@
 			</div>
 		</div>
 		<div class="form-group row">
-			<div class="col-sm-6 col-md-3">
-				<label class="form-control-label">Country: </label>
-				<div class="input-group mb-3">
-					<select name="country_id" class="form-control" id="countries">
+ <select name="country_id" class="form-control" id="countries">
 						<option value="0">Select a Country</option>
 						@foreach($countries as $country)
 						<option value="{{$country->id}}">{{$country->name}}</option>
 						@endforeach
 					</select>
-				</div>
-			</div>
-				<div class="col-sm-6 col-md-3">
-				<label class="form-control-label">State: </label>
-				<div class="input-group mb-3">
-					<select name="state_id" class="form-control" id="states">
+				<br>
+			<select name="state_id" class="form-control" id="states">
 						<option value="0">Select a State</option>
 					</select>
-				</div>
-			</div>
 
-			<div class="col-sm-6 col-md-3">
-				<label class="form-control-label">City: </label>
-				<div class="input-group mb-3">
-					<select name="city_id" class="form-control" id="cities">
-                <option value="0">Select a city</option>
-					</select>
-				</div>
-			</div>
-			<div class="col-sm-6 col-md-3">
-				<label class="form-control-label">Phone: </label>
-				<div class="input-group mb-3">
-					<input type="text" class="form-control" name="phone" placeholder="Phone" value="{{@$user->phone}}" />
-				</div>
-			</div>
+					<br>
+			<select class="form-control my-2"id="city">
+			  <option value="0">Small select</option>
+			</select>
 		</div>
 	</div>
 	<div class="col-lg-3">
@@ -170,58 +152,47 @@
 </form>
 @endsection
 @section('scripts')
-<script type="text/javascript">
-	$(function(){
-		$('#txturl').on('keyup', function(){
-			const pretty_url = slugify($(this).val());
-			$('#url').html(slugify(pretty_url));
-			$('#slug').val(pretty_url);
-		})
-$('#thumbnail').on('change', function() {
-var file = $(this).get(0).files;
-var reader = new FileReader();
-reader.readAsDataURL(file[0]);
-reader.addEventListener("load", function(e) {
-var image = e.target.result;
-$("#imgthumbnail").attr('src', image);
-});
-});
-// Set up the Select2 control
-$('#countries').select2().trigger('change');
-$('#states').select2();
-$('#cities').select2();
-//On Country Change
-$('#countries').on('change', function(){
-	//console.log('changed');
-	var id = $('#countries').select2('data')[0].id;
-	console.log('changed');
-	$('#states').val(null);
-	$('#states option').remove();
-	// Fetch the preselected item, and add to the control
-var studentSelect = $('#states');
-$.ajax({
-type: 'GET',
-url:   "{{route('admin.profile.states')}}/" + id
-}).then(function (data) {
-	// create the option and append to Select2
-	for(i=0; i< data.length; i++){
-		var item = data[i]
-		var option = new Option(item.name, item.id, true, true);
-		studentSelect.append(option);
-	}
-studentSelect.trigger('change');
-	});
-})
-//On state Change
-$('#states').on('change', function(){
+
+<script  type="text/javascript">
+			$('#countries').select2().trigger('change');
+			$('#states').select2();
+			$('#city').select2();
+		
+   $('#countries').on('change', function(){
+				console.log("country chang");
+						   var id = $('#countries').select2('data')[0].id;
+							$('#states').val(null);
+							$('#states option').remove();
+					   var studentSelect = $('#states');
+				$.ajax({
+					type: 'GET',
+					url: "{{route('admin.profile.states')}}/" + id
+				}).then(function (data) {
+					// create the option and append to Select2
+					
+					for(i=0; i< data.length; i++){
+							var item = data[i]
+							var option = new Option(item.name, item.id, true, true);
+							studentSelect.append(option);
+						}
+					//var option = new Option(data.full_name, data.id, true, true);
+					studentSelect.trigger('change');
+
+					// manually trigger the `select2:select` event
+					
+				});
+			})
+
+			// statechange in onclick function
+			$('#states').on('change', function(){
 	var id = $('#states').select2('data')[0].id;
 	// Fetch the preselected item, and add to the control
-	var studentSelect = $('#cities');
-	$('#cities').val(null);
-	$('#cities option').remove();
+	var studentSelect = $('#city');
+	$('#city').val(null);
+	$('#city option').remove();
 $.ajax({
 type: 'GET',
-url:
+url: "{{route('admin.profile.cities')}}/" + id
 }).then(function (data) {
 	// create the option and append to Select2
 	for(i=0; i< data.length; i++){
@@ -232,7 +203,8 @@ url:
 	});
 studentSelect.trigger('change');
 })
-})
-</script>
+			
+		
+		</script>
  
 @endsection

@@ -10,7 +10,7 @@
     <!-- Text input -->
     <div class="form-outline mb-4">
         <label class="form-label" for="form6Example3">name</label>
-      <input type="text"  name="name"  value="{{$categories->name ?? ''}}" class="form-control" />
+      <input type="text"  name="name"  value="{{$categories->name}}" class="form-control" />
      
     </div>
   
@@ -22,13 +22,13 @@
     </div>
   
     <!-- Email input -->
-    <div class="form-outline mb-4">
+    <!-- <div class="form-outline mb-4">
         <label class="form-label" for="form6Example5">image</label>
         <img src= "{{asset('uploads/'. $categories->image) }}"  class="img-fluid"height="200px;"  width="100%">
       <input type="file" id="form6Example5" name="image" class="form-control" />
       
       
-    </div>
+    </div> -->
   
     <!-- Number input -->
     <div class="form-outline mb-4">
@@ -40,14 +40,14 @@
    
     <div class="form-outline mb-4">
       <label class="form-control-label">Select Category: </label>
-			<select name="parent_id[]" id="parent_id" class="form-control" multiple>
-			 @if(isset($categories))
-        <option value="0">Top Level</option>
-        @foreach($categories as $cat)
-        <option value="{{$cat->id ??''}}">{{$cat->name ??''}}</option>
-        @endforeach
-        @endif
-			</select>
+			<select name="parent_id[]" id="parent_id" class="form-control">
+                @if(isset($categories))
+                <option value="0">Top Level</option>
+                @foreach($categories as $cat)
+                <option value="{{$cat->id ?? ''}}">{{$cat->name ?? ''}}</option>
+                @endforeach
+                @endif
+            </select>
     </div>
     <!-- Message input -->
    

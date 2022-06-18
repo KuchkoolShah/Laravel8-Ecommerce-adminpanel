@@ -4,8 +4,28 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 Use App\Models\Category;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryStore;
+use RealRashid\SweetAlert\Facades\Alert;
+use session;
 class CategoryController extends Controller
 {
+
+
+     public function __construct()
+    {
+        $this->middleware(function($request,$next){
+            if (session('success')) {
+                Alert::success(session('success'));
+            }
+
+            if (session('error')) {
+                Alert::error(session('error'));
+            }
+
+            return $next($request);
+        });
+    }
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +33,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(5);
+         Alert::success('Category', 'Category  loaded successfully');
         return view('admin.Category.index',compact('categories'));
     }
 
@@ -36,21 +57,30 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->hasFile('image')) {
+      
+      
+    if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('uploads'), $imageName);
                             }
-            $category = new Category;
-            $category->image = $imageName;
-            $category->name = $request->name;
-            $category->slug = $request->slug;
-            $category->description= $request->description;
+       $category =Category::create([
+        'image' => $imageName ,
+           'name'=>$request->name,
+           'slug' => $request->slug,
+           'description'=>$request->description,
+           
+          
+       ]);
+
+       if($category){
+
             $category->parents()->attach($request->parent_id,['created_at'=>now(), 'updated_at'=>now()]);
-            $saved = $category->save();
-            if($saved)
-            return back()->with('message','Category add Successfully!');
-        else
-            return back()->with('message', 'Error Updating Category');
+           Alert::success('Category', 'Category add to successfully');
+
+            return redirect(route('admin.category.index'));
+       }else{
+            return back()->with('message', 'Error Inserting category');
+       }
     }
 
     /**
@@ -72,7 +102,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::first();
+        $categories = Category::findOrFail($id);
         return view('admin.Category.edit',compact('categories'));
     }
 
@@ -85,20 +115,21 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-         $category = Category::find($id);
-        if ($request->hasFile('image')) {
-            $imageName = time() . '.' . $request->image->extension();
-            $request->image->move(public_path('uploads'), $imageName);
-                            }
-            
-            $category->image = $imageName;
-            $category->name = $request->name;
-            $category->slug = $request->slug;
-            $category->description= $request->description;
-           
-            $saved = $category->save();
+                 $category = Category::find($id);
+          $category->name = $request->name;
+        $category->description = $request->description;
+        $category->slug = $request->slug;
+        //detach all parent categories
+        $category->parents()->detach();
+        //attach selected parent categories
+        $category->parents()->attach($request->parent_id,['created_at'=>now(), 'updated_at'=>now()]);
+        //save current record into database
+        $saved = $category->save();
+          
+
             if($saved)
-            return redirect()->route('category.index')->with('message','Category add Successfully!');
+
+            return redirect()->route('admin.category.index')->with('message','Category add Successfully!');
         else
             return back()->with('message', 'Error Updating Category');
     
@@ -146,6 +177,18 @@ public function trash()
         return redirect()->route('category.index');
     }
 
+ public function Category_apishow()
+    { 
+             $categories = Category::all();
+        //return view('admin.Category.index',compact('categories'));
+
+      if(count( $categories)>0){
+        return response()->json(["status"=>200,'message'=>'category Data','data'=> $categories]);   
+      }else{
+        return response()->json(["status"=>400,'message'=>'No record found','data'=>[]]);
+      }
+       
+    }
 
   
 }

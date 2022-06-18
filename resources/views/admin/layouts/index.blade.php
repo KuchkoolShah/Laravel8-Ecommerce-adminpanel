@@ -4,8 +4,9 @@
         @include('admin.layouts.head')
     </head>
 <body class="hold-transition skin-blue sidebar-mini">
-    <div class="wrapper">
+    
 
+    <div class="wrapper">
 
         <!-- Left side column. contains the logo and sidebar -->
         @include('admin.layouts.header')

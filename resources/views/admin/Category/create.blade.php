@@ -5,14 +5,34 @@
 @section('content')
  <!-- Content Header (Page header) -->
  <section class="content">
+
+       @include('sweetalert::alert')                 
  <form action="{{route('admin.category.store')}}" method="POST" enctype="multipart/form-data">
     <!-- 2 column grid layout with text inputs for the first and last names -->
     @csrf
   
+
+  <div class="col-sm-12">
+          @if ($errors->any())
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
+        </div>
     <!-- Text input -->
     <div class="form-outline mb-4">
         <label class="form-label" for="form6Example3">name</label>
-      <input type="text" id="form6Example3" name="name" class="form-control" />
+      <input type="text" id="form6Example3" name="name"  class="form-control @error('name') is-invalid @enderror" required/>
+          @error('name')
+                               <span class="invalid-feedback" role="alert">
+                                   <strong>{{ $message }}</strong>
+                               </span>
+                           @enderror
+
      
     </div>
   
@@ -39,18 +59,19 @@
   
     <div class="form-outline mb-4">
       <label class="form-control-label">Select Category: </label>
-			<select name="parent_id[]" id="parent_id" class="form-control">
+      <select class="js-example-basic-multiple  form-control" name="parent_id[]" multiple>
+		
 				@if(isset($categories))
 				<option value="0">Top Level</option>
 				@foreach($categories as $cat)
-				<option value="{{$cat->id}}">{{$cat->name}}</option>
+				<option value="{{$cat->id}}">{{$cat->name ??''}}</option>
 				@endforeach
 				@endif
 			</select>
     </div>
     <!-- Message input -->
    
-  
+  <br>
 
   
     <!-- Submit button -->
@@ -63,13 +84,8 @@
 <script src="{{ asset('admin/plugins/select2/select2.full.js') }}"></script>
 <script src="{{ asset('admin/plugins/select2/select2.js') }}"></script>
 <script type="text/javascript">
-$(function(){
-
-  $('#parent_id').select2({
-    placeholder: "Select a Parent Category",
-    allowClear: true,
-    minimumResultsForSearch: Infinity
-  });
-})
+$(document).ready(function() {
+    $('.js-example-basic-multiple').select2();
+});
 </script>
 @endsection

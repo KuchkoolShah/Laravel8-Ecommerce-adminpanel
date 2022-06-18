@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', function () {
+	 Alert::success('Page load', 'wellcome to my  website');
+
 return view('welcome');
 });
 
@@ -24,6 +26,7 @@ Route::group(['as' => 'products.', 'prefix' => 'products'], function () {
 	Route::get('about', 'ProductController@about_products')->name('about');
 	Route::get('contact', 'ProductController@contact_products')->name('contact');
 	Route::get('shop', 'ProductController@shop_products')->name('shop');
+	Route::get('detail/{id}', 'ProductController@details')->name('detail');
 	
 	Route::get('/', 'ProductController@show')->name('all');
 	Route::get('/{product}', 'ProductController@single')->name('single');

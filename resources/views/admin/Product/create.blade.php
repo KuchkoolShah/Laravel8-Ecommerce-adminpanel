@@ -1,5 +1,14 @@
 @extends('admin.layouts.index');
+@section('css')
+<link rel="stylesheet" href="{{ asset('admin/select2/select2.css') }}">
+<link rel="stylesheet" href="{{ asset('admin/select2/select2.min.css') }}"> 
 
+<script src="{{asset('admin/select2/select2.js') }}"></script>
+<script src="{{asset('admin/jquery/jquery.min.js') }}"></script>
+<script src="{{asset('admin/select2/select2.full.js') }}"></script>   
+<script src="{{asset('admin/select2/select2.min.js')}}"></script>
+
+@endsection
 @section('content')
  <!-- Content Header (Page header) -->
  <section class="content">
@@ -61,6 +70,24 @@
         <label class="form-label" for="form6Example4">Quantity</label>
       <input type="text" id="form6Example4" name="quantity"   class="form-control" />
      
+    </div><br>
+      <!-- Text input -->
+    <div class="form-outline mb-4">
+      @php
+      $ids = (isset($product) && $product->categories->count() > 0 ) ? array_pluck($product->categories->toArray(), 'id') : null;
+      @endphp
+       <label class="form-label" for="form6Example4">Select a category</label>
+        <select name="category_id[]" id="select2" class="form-control" >
+          @if($categories->count() > 0)
+          @foreach($categories as $category)
+          <option value="{{$category->id}}"
+            @if(!is_null($ids) && in_array($category->id, $ids))
+            {{'selected'}}
+            @endif
+          >{{$category->name}}</option>
+          @endforeach
+          @endif
+        </select>
     </div>
      <!-- Text input -->
    
@@ -71,3 +98,11 @@
   </form>
  <section>
  @endsection
+ @section('scripts')
+<script type="text/javascript">
+  $('#select2').select2({
+      placeholder: "Select multiple Categories",
+    allowClear: true
+    });
+  </script>
+@endsection

@@ -5,7 +5,7 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\carousel;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\StoreProduct;
 class ProductController extends Controller
 {
     /**
@@ -46,27 +46,51 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-         $product = new  Product();
-        if ($request->hasFile('image')) {
+        
+
+    if ($request->hasFile('image')) {
             $imageName = time() . '.' . $request->image->extension();
             $request->image->move(public_path('uploads'), $imageName);
                             }
             
-            $product->image = $imageName;
-            $product->name = $request->name;
-            $product->slug = $request->slug;
-             $product->SKU = $request->SKU;
-            $product->regular_price=$request->regular_price;
-            $product->stock_status= $request->stock_status;
-            $product->quantity= $request->quantity;
-            $product->description= $request->description;
-            //dd($product);
-            $saved = $product->save();
+       $product = Product::create([
+           'name'=>$request->name,
+           'slug' => $request->slug,
+           'description'=>$request->description,
+            'SKU'=>$request->SKU,
+           'image' => $imageName ,  
+            'stock_status'=> $request->stock_status,
+            'quantity'=> $request->quantity,
+             'regular_price'=>$request->regular_price,
+          
+       ]);
+    
+       if($product){
+            $product->categories()->attach($request->category_id,['created_at'=>now(), 'updated_at'=>now()]);
+            return redirect(route('admin.product.index'))->with('message', 'Product Successfully Added');
+       }else{
+            return back()->with('message', 'Error Inserting Product');
+       }
+        // if ($request->hasFile('image')) {
+        //     $imageName = time() . '.' . $request->image->extension();
+        //     $request->image->move(public_path('uploads'), $imageName);
+        //                     }
+            
+        //     $product->image = $imageName;
+        //     $product->name = $request->name;
+        //     $product->slug = $request->slug;
+        //      $product->SKU = $request->SKU;
+        //     $product->regular_price=$request->regular_price;
+        //     $product->stock_status= $request->stock_status;
+        //     $product->quantity= $request->quantity;
+        //     $product->description= $request->description;
+        //     //dd($product);
+        //     $saved = $product->save();
 
-            if($saved)
-            return redirect()->route('product.admin.index')->with('message','product update Successfully!');
-        else
-            return back()->with('message', 'Error Updating Product');
+        //     if($saved)
+        //     return redirect()->route('product.admin.index')->with('message','product update Successfully!');
+        // else
+        //     return back()->with('message', 'Error Updating Product');
     
     }
 
@@ -169,7 +193,11 @@ class ProductController extends Controller
         return view('customer.shop',compact('producted' , 'categories' , 'popular_product'));
     }
 
-  
+   public function details($id)
+    {
+       $products = Product::with('categories')->first();
+       return view('customer.detail', compact('products'));
+    }
 
 
   

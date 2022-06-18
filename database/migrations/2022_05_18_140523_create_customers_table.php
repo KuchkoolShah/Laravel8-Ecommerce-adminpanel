@@ -32,7 +32,7 @@ class CreateCustomersTable extends Migration
             $table->string("shipping_state")->nullable();
             $table->string("shipping_zip")->nullable();
             $table->timestamps();
-            $table->softDeletes();
+           
         });
     }
 

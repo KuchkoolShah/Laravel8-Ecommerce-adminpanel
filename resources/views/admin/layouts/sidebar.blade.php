@@ -63,14 +63,16 @@
                             </span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="{{route('admin.category.index')}}"><i class="fa fa-circle-o"></i>All Category</a></li>
+                            <li><a href="{{route('admin.category.index')}}"><i class="fa fa-circle-o"></i>
+
+                            All Category</a></li>
                            
                            
                             <li><a href=""><i class="fa fa-circle-o"></i>Trash Category</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
-                        <a href="#">
+                       <a href="#">
                             <i class="fa fa-pie-chart"></i>
                             <span>Product</span>
                             <span class="pull-right-container">

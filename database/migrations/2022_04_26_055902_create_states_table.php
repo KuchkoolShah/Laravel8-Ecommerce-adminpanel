@@ -17,7 +17,7 @@ class CreateStatesTable extends Migration
            $table->increments('id');
             $table->unsignedInteger('country_id');
             $table->string('name');
-            $table->softDeletes();
+          
             $table->timestamps();
         });
     }

@@ -19,9 +19,13 @@
 								<h2 class="box-title">Leave a Message</h2>
 								<form  method="POST" action="{{route('uers.contact') }}" name="frm-contact">
 									@csrf
+									<div> 
 									<label for="name">Name<span>*</span></label>
 									<input type="text" value="" id="name" name="name">
-
+									@if ($errors->has('name'))
+                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                @endif 
+										</div>
 									<label for="email">Email<span>*</span></label>
 									<input type="email" value="" id="email" name="email">
 

@@ -31,6 +31,17 @@
 <link rel="stylesheet" href="{{ asset('admin/plugins/select2/select2.css') }}">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
 <script src="{{ asset('admin/plugins/select2/select2.full.min.js') }}"></script>
+
+<!--------select 2 method--------->
+
+		<link rel="stylesheet" href="{{ asset('admin/select2/select2.css') }}">
+		<link rel="stylesheet" href="{{ asset('admin/select2/select2.min.css') }}">	
+			<script src="{{asset('admin/select2/select2.js') }}"></script>
+			<script src="{{asset('admin/jquery/jquery.min.js') }}"></script>
+					
+			<script src="{{asset('admin/select2/select2.full.js') }}"></script>		
+
+			<script src="{{asset('admin/select2/select2.min.js')}}"></script>
 @section('headSection')
 @show
 

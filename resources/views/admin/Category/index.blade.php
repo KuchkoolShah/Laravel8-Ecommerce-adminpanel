@@ -17,6 +17,7 @@
 
 
  <section class="content">
+  @include('sweetalert::alert')
     <div class="row">
       <div class="col-xs-12">
       
@@ -35,8 +36,11 @@
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 219.703px;">Name</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 202.281px;">Slug</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 156.703px;">Description
-                </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Image</th>
-              </th><th class="sorting " colspan="2" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Edite</th></tr>
+                </th>
+                <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Image</th>
+                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Children</th>
+              </th>
+              <th class="sorting " colspan="2" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Edite</th></tr>
               </thead>
               <tbody>
                 @if($categories->count() > 0)
@@ -47,18 +51,17 @@
                 <td>{{$category->slug}}</td>
                 <td>{{$category->description}}</td>
                 <td> <img src= "{{asset('uploads/'.$category->image) }}"  class="img-fluid" width="100%"> </td>
-
-                 @if($category->trashed())
-        <td>{{$category->deleted_at}}</td>
-        <td ><a class="btn btn-info btn-sm" href="{{route('category.recover',$category->id)}}">Restore</a> 
-        <form id="delete-category-{{$category->id}}" action="{{ route('category.destroy', $category->slug) }}" method="POST" style="display: none;">
-          
-          @method('DELETE')
-          @csrf
-        </form>
-      </td>
-      @else
-                <td><a href="{{route('admin.category.edit' , $category->id)}}"><span data-toggle="tooltip" data-placement="top" title="Edit" class="glyphicon glyphicon-edit"></span><a>|
+                 <td>
+          @if($category->childrens()->count() > 0)
+          @foreach($category->childrens as $children)
+          {{$children->name}}
+          @endforeach
+          @else
+          <strong>{{"Parent Category"}}</strong>
+          @endif
+        </td>
+   
+                <td> <a href="{{route('admin.category.edit' , $category->id)}}"><span data-toggle="tooltip" data-placement="top" title="Edit" class="glyphicon glyphicon-edit"></span><a>|
                 <form id="delete-form-{{ $category->id }}" method="post" action="{{ route('admin.category.destroy',$category->id) }}" style="display: none">
                   {{ csrf_field() }}
                   {{ method_field('DELETE') }}
@@ -72,19 +75,40 @@
                     else{
                       event.preventDefault();
                     }" ><span  data-toggle="tooltip" data-placement="top" title="Delete" class="glyphicon glyphicon-trash"></span></a></td>
-                     @endif
+                    
               </tr>
               @endforeach
+
               @else
               <tr>
                 <td colspan="7" class="alert alert-info">No Categories Found..</td>
               </tr>
               @endif
+
+
             </tbody>
               <tfoot>
-              <tr><th rowspan="1" colspan="1">id</th><th rowspan="1" colspan="1">Name</th><th rowspan="1" colspan="1">Slug</th><th rowspan="1" colspan="1">Description</th><th rowspan="1" colspan="1">Image</th> <th rowspan="1" colspan="1">Operation</th></tr>
+              <tr><th rowspan="1" colspan="1">id</th><th rowspan="1" colspan="1">Name</th><th rowspan="1" colspan="1">Slug</th><th rowspan="1" colspan="1">Description</th>  <th rowspan="1" colspan="1">Image</th>  <th rowspan="1" colspan="1">children</th>
+                <th rowspan="1" colspan="1">Operation</th>
+              </tr>
               </tfoot>
-            </table></div></div><div class="row"><div class="col-sm-5"><div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div></div><div class="col-sm-7"><div class="dataTables_paginate paging_simple_numbers" id="example1_paginate"><ul class="pagination"><li class="paginate_button previous disabled" id="example1_previous"><a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a></li><li class="paginate_button active"><a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">5</a></li><li class="paginate_button "><a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0">6</a></li><li class="paginate_button next" id="example1_next"><a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a></li></ul></div></div></div></div>
+            </table></div></div>
+
+            <div class="row"><div class="col-sm-5">
+              <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing 1 to 10 of 57 entries</div>
+            </div>
+            <div class="col-sm-7">
+              <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                <ul class="pagination">
+                  
+                  <li class="paginate_button previous " id="example1_previous">
+                    {{$categories->links()}}
+                  </li>
+                
+
+                
+
+                </ul></div></div></div></div>
           </div>
           <!-- /.box-body -->
         </div>
