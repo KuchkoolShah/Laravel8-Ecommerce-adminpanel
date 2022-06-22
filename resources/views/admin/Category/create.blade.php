@@ -59,7 +59,7 @@
   
     <div class="form-outline mb-4">
       <label class="form-control-label">Select Category: </label>
-      <select class="js-example-basic-multiple  form-control" name="parent_id[]" multiple>
+      <select class="js-example-basic-multiple js-states  form-control" name="parent_id[]" multiple="multiple" >
 		
 				@if(isset($categories))
 				<option value="0">Top Level</option>
@@ -75,17 +75,26 @@
 
   
     <!-- Submit button -->
-    <button type="submit" class="btn btn-primary btn-block mb-4">Place order</button>
+    <button type="submit" class="btn btn-primary btn-block mb-4">Submit Category</button>
   </form>
  <section>
  @endsection
 
  @section('script')
-<script src="{{ asset('admin/plugins/select2/select2.full.js') }}"></script>
-<script src="{{ asset('admin/plugins/select2/select2.js') }}"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-    $('.js-example-basic-multiple').select2();
+
+
+   $('.js-example-basic-multiple').select2({
+    tags: true,
+     placeholder: "Select a state",
+    tokenSeparators: [',', ' ']
 });
+
+
+
 </script>
 @endsection

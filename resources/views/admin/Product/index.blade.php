@@ -36,7 +36,10 @@
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 202.281px;">Slug</th>
                 <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 156.703px;">Description
                 </th><th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Image</th>
-              </th><th class="sorting "  tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Price</th><th class="sorting "  tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Stoct</th><th class="sorting "  tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Qunatity</th><th class="sorting "  tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Edite</th>
+              </th> 
+              <th class="sorting "  tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Categories</th>
+              <th class="sorting "  tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Price</th>
+              <th class="sorting "  tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Stoct</th><th class="sorting "  tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Qunatity</th><th class="sorting "  tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="width: 110.812px;">Edite</th>
             </tr>
               </thead>
               <tbody>
@@ -48,6 +51,15 @@
                 <td>{{$product->slug}}</td>
                 <td>{{$product->description}}</td>
                 <td> <img src= "{{asset('uploads/'.$product->image) }}"  class="img-fluid" width="100%"> </td>
+                <td>
+                      @if($product->categories()->count() > 0)
+                      @foreach($product->categories as $children)
+                      {{$children->name}},
+                      @endforeach
+                      @else
+                      <strong>{{"product"}}</strong>
+                      @endif
+                    </td>
                  <td>{{$product->regular_price}}</td>
                  <td>{{$product->stock_status}}</td>
                  <td>{{$product->quantity}}</td>
