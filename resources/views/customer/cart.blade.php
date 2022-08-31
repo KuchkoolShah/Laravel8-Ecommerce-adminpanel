@@ -12,82 +12,45 @@
 				</ul>
 			</div>
 			<div class=" main-content-area">
-
+				@if(isset($cart) && $cart->getContents())
 				<div class="wrap-iten-in-cart">
 					<h3 class="box-title">Products Name</h3>
-
 					<ul class="products-cart">
-						<li class="pr-cart-item">
-							<div class="product-name">
-								<h3 class="box-title">Image</h3>
-							</div>
-							<div class="product-name">
-								<h3 class="box-title">Name</h3>
-							</div>
-							<div class="product-name">
-								<h3 class="box-title">Price</h3>
-							</div>
-					<div class="product-name">
-								<h3 class="box-title">Update</h3>
-							</div>
-							<div class="product-name">
-								<h3 class="box-title">Price</h3>
-							</div>
-							<div class="product-name">
-								<h3 class="box-title">Remove</h3>
-							</div>
-						</li>
-						 @foreach ($cartItems as $item)
+					@foreach($cart->getContents() as $slug => $product)
 						<li class="pr-cart-item">
 							<div class="product-image">
-								<figure><img src="{{$item->attributes->image }}" alt=""></figure>
+								<figure><img src="{{asset('uploads/'.$product['product']->image) }}" alt=""></figure>
 							</div>
 							<div class="product-name">
-								<a class="link-to-product" href="#">{{$item->name }}</a>
+								<a class="link-to-product" href="#">{{$product['product']->name}}</a>
 							</div>
-							<div class="price-field produtc-price"><p class="price">${{ $item->price}}</p></div>
+							<div class="price-field produtc-price"><p class="price">USD {{$product['price']}}</p></div>
 							<div class="quantity">
-								<div >
-									 <form action="{{ route('cart.update') }}" class="d-flex"  method="POST">
-                                      @csrf
-                                      <input type="hidden" name="id" value="{{ $item->id}}" >
-                                    <input type="number" name="quantity" value="{{ $item->quantity }}" 
-                                    class="w-6 text-center bg-gray-300" />
-                                    <button type="submit" class="px-2 pb-2 ml-2 text-white bg-blue-500">update</button>
-                                    </form>
-								</div>
+								<form method="POST" action="{{route('cart.update', $slug)}}" >
+							@csrf
+						<input type="number" name="qty" id="qty" class="form-control text-center" min="0" max="99" value="{{$product['qty']}}">
+						<input type="submit" name="update" value="Update" class="btn btn-block btn-outline-success btn-round">
+						</form>
 							</div>
-							<div class="price-field sub-total"><p class="price">${{ $item->price}}</p></div>
+							<div class="price-field sub-total"><p class="price">$256.00</p></div>
 							<div class="delete">
-								<a href="#" class="btn btn-delete" title="">
-									<span>Delete from your cart</span>
-									
-										<form action="{{ route('cart.remove') }}" method="POST">
-                                  @csrf
-                                  <input type="hidden" value="{{ $item->id }}" name="id">
-                                  <button class="px-4 py-2 text-white bg-red-600">x</button>
-                              </form>
-									
+								<form action="{{route('cart.remove', $product)}}" method="POST" accept-charset="utf-8">
+							@csrf
 
-								</a>
+							<input type="submit" name="remove" value="x Remove" class="btn btn-outline-danger"/>
+							</form>
 							</div>
 						</li>
-						  @endforeach
-																	
+							@endforeach											
 					</ul>
 				</div>
 
 				<div class="summary">
 					<div class="order-summary">
 						<h4 class="title-box">Order Summary</h4>
-						<p class="summary-info"><span class="title">Subtotal</span><b class="index">${{ Cart::getTotal() }}</b></p>
-						<p class="summary-info"><span class="title">
-							<form action="{{ route('cart.clear') }}" method="POST">
-                            @csrf
-                            <button class="px-6 py-2 text-red-800 bg-red-300">Remove All Cart</button>
-                          </form>
-                      </span><b class="index">Free Shipping</b></p>
-						<p class="summary-info total-info "><span class="title">Total</span><b class="index">${{ Cart::getTotal() }}</b></p>
+						<p class="summary-info"><span class="title">totalQuantity</span><b class="index">{{$cart->getTotalQty()}}</b></p>
+						<p class="summary-info"><span class="title">Shipping</span><b class="index">Free Shipping</b></p>
+						<p class="summary-info total-info "><span class="title">Total</span><b class="index">${{$cart->getTotalPrice()}}</b></p>
 					</div>
 					<div class="checkout-info">
 						<label class="checkbox-field">
@@ -101,7 +64,9 @@
 						<a class="btn btn-update" href="#">Update Shopping Cart</a>
 					</div>
 				</div>
-
+						@else
+		<p class="alert alert-danger">No Products in the Cart <a href="{{route('products.shop')}}">Buy Some Products</a></p>
+	@endif
 				<div class="wrap-show-advance-info-box style-1 box-in-site">
 					<h3 class="title-box">Most Viewed Products</h3>
 					<div class="wrap-products">
@@ -254,6 +219,5 @@
 
 			</div><!--end main content area-->
 		</div><!--end container-->
-
-	</main>
+</main>
 	@endsection

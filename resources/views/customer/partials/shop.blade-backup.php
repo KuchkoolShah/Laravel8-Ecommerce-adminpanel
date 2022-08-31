@@ -70,14 +70,17 @@
 									</div>
 									<div class="product-info">
 										<a href="#" class="product-name"><span>{{$product->name}}</span></a>
-										<div class="wrap-price"><span class="product-price">${{$product->price}}</span></div>
-										
-                        <a type="button" href="{{route('products.addToCart', $product)}}"> <button class="px-4 py-2 text-white bg-blue-800 rounded">Add To  Cart</button></a>
-
-                    
-
+										<div class="wrap-price"><span class="product-price">${{$product->regular_price}}</span></div>
+										<form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="hidden" value="{{ $product->id }}" name="id">
+                        <input type="hidden" value="{{ $product->name }}" name="name">
+                        <input type="hidden" value="{{ $product->regular_price }}" name="price">
+                        <input type="hidden" value="{{ $product->image }}"  name="image">
+                        <input type="hidden" value="1" name="quantity">
+                        <button class="px-4 py-2 text-white bg-blue-800 rounded">Add To Cart</button>
                         	<a href="">  <button class="px-4 py-2 text-white bg-blue-800 rounded">Detail View</button></a>
-                    
+                    </form>
 
 									</div>
 								</div>

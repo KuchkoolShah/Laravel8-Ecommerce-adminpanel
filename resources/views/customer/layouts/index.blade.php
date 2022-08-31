@@ -5,7 +5,11 @@
     </head>
     <body class="home-page home-01 ">
 	@include('customer.layouts.header')
-
+  @if(session()->has('message'))
+                        <p class="alert alert-success">
+                            {{ session()->get('message') }}
+                        </p>
+                    @endif
 	<main>
 		   @yield('content')
 	</main>

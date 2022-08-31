@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\carousel;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProduct;
+use Session;
 class ProductController extends Controller
 {
     /**
@@ -25,6 +27,16 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+
+ public function addToCart(Product $product, Request $request){
+
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $qty = $request->qty ? $request->qty : 1;
+        $cart = new Cart($oldCart);
+        $cart->addProduct($product, $qty);
+        Session::put('cart', $cart);
+        return back()->with('message', "Product $product->title has been successfully added to Cart");
+    }
 
 
     
@@ -163,9 +175,38 @@ class ProductController extends Controller
         //
     }
 
+  public function updateProduct(Product $product, Request $request){
+  
+      $oldCart = Session::has('cart') ? Session::get('cart') : null;
+      $cart = new Cart($oldCart);
+      $cart->updateProduct($product, $request->qty );
+      Session::put('cart', $cart);
+      return back()->with('message', "Product $product->title has been successfully Updated in the Cart");
+   }
+
+
+ public function removeProduct(Product $product){
+      $oldCart = Session::has('cart') ? Session::get('cart') : null;
+      $cart = new Cart($oldCart);
+      $cart->removeProduct($product);
+      Session::put('cart', $cart);
+      return back()->with('message', "Product $product->title has been successfully removed From the Cart");
+   }
+
+        public function cart(){
+
+      if(!Session::has('cart')){
+        return view('customer.cart');
+      }
+      $cart = Session::get('cart');
+      //dd($cart);
+      return view('customer.cart', compact('cart'));
+    }
+
 
      public function show_home()
     {
+         //dd(Session::get('cart'))
         $producted = product::paginate(5);
        
           $products = Product::paginate(5);

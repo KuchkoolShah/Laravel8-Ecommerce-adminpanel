@@ -152,11 +152,9 @@
 									<a href="{{route('products.shop')}}" class="link-term mercado-item-title">Shop</a>
 								</li>
 								<li class="menu-item">
-									<a href="{{route('cart.list')}}" class="link-term mercado-item-title">Cart  <span class="badge bg-secondary">{{ Cart::getTotalQuantity()}}</span></a>
+									<a href="{{route('cart.all')}}" class="link-term mercado-item-title">Cart </a>
 								</li>
-								<li class="menu-item">
-									<a href="{{route('checkout.index')}}" class="link-term mercado-item-title">Checkout</a>
-								</li>
+								
 								<li class="menu-item">
 									<a href="{{route('products.contact')}}" class="link-term mercado-item-title">Contact Us</a>
 								</li>

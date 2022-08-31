@@ -19,6 +19,11 @@ return view('welcome');
 
 Route::resource('/checkout', 'OrderController');
 
+Route::group(['as' => 'cart.', 'prefix' => 'cart'], function () {
+	Route::get('/', 'ProductController@cart')->name('all');
+	Route::post('/remove/{product}', 'ProductController@removeProduct')->name('remove');
+	Route::post('/update/{product}', 'ProductController@updateProduct')->name('update');
+});
 
 /// product
 Route::group(['as' => 'products.', 'prefix' => 'products'], function () {
@@ -67,9 +72,9 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 //  shopping cart
 
-Route::get('cart', 'CartController@cartList')->name('cart.list');
-Route::post('cart', 'CartController@addToCart')->name('cart.store');
-Route::post('update-cart', 'CartController@updateCart')->name('cart.update');
-Route::post('remove', 'CartController@removeCart')->name('cart.remove');
-Route::post('clear', 'CartController@clearAllCart')->name('cart.clear');
-Route::get('carted', 'CartController@cartListed')->name('cart.listed');
+// Route::get('cart', 'CartController@cartList')->name('cart.list');
+// Route::post('cart', 'CartController@addToCart')->name('cart.store');
+// Route::post('update-cart', 'CartController@updateCart')->name('cart.update');
+// Route::post('remove', 'CartController@removeCart')->name('cart.remove');
+// Route::post('clear', 'CartController@clearAllCart')->name('cart.clear');
+// Route::get('carted', 'CartController@cartListed')->name('cart.listed');
