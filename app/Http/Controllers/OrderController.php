@@ -19,7 +19,10 @@ class OrderController extends Controller {
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
+     * 
      */
+
     public function index() {
 
         if (!Session::has('cart') || empty(Session::get('cart')->getContents())) {
@@ -57,6 +60,7 @@ class OrderController extends Controller {
             if ($request->shipping_address) {
                 $customer = [
                     "billing_firstName" => $request->billing_firstName,
+                    
                     "billing_lastName" => $request->billing_lastName,
                      "username" => $request->username,
                     "email" => $request->email,

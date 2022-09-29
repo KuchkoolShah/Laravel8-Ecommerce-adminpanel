@@ -20,13 +20,7 @@
               <span class="text-muted">${{$product['price']}}</span>
             </li>
             @endforeach
-  {{--           <li class="list-group-item d-flex justify-content-between bg-light">
-              <div class="text-success">
-                <h6 class="my-0">Promo code</h6>
-                <small>EXAMPLECODE</small>
-              </div>
-              <span class="text-success">-$5</span>
-            </li> --}}
+ 
             <li class="list-group-item d-flex justify-content-between">
               <span>Total (USD)</span>
               <strong>${{$cart->getTotalPrice()}}</strong>
@@ -45,15 +39,19 @@
          <form action="{{route('checkout.store')}}" method="post" >
          @csrf
           <div class="row g-3">
-            <div class="col-sm-6">
-              <label for="firstName" class="form-label">First name</label>
-              <input type="text" class="form-control" name="billing_firstName" id="firstName" placeholder="" value="" required>
-              
-            </div>
+           <div class="col-md-6 mb-3">
+                <label for="firstName">First name</label>
+                <input type="text" name="billing_firstName" class="form-control"   placeholder="" value="{{ auth()->user()->name }}" required="">
+                @if($errors->has('billing_firstName'))
+                  <div class="alert alert-danger">
+                    {{$errors->first('billing_firstName')}}
+                  </div>
+                @endif
+              </div>
 
             <div class="col-sm-6">
               <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName" name="billing_lastName" placeholder="" value="" required>
+              <input type="text" class="form-control" id="lastName" name="billing_lastName" placeholder="" value="{{ auth()->user()->name }}" required>
               <div class="invalid-feedback">
                 Valid last name is required.
               </div>
@@ -63,7 +61,7 @@
               <label for="username" class="form-label">Username</label>
               <div class="input-group has-validation">
                 <span class="input-group-text">@</span>
-                <input type="text" class="form-control"  name="username" id="username" placeholder="Username" required>
+                <input type="text" class="form-control"  name="username" id="username"  placeholder="Username" required>
               <div class="invalid-feedback">
                   Your username is required.
                 </div>
@@ -72,7 +70,7 @@
 
             <div class="col-12">
               <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email"  name="email" class="form-control" id="email" placeholder="you@example.com">
+              <input type="email"  name="email" class="form-control" value="{{ auth()->user()->email }}" id="email" placeholder="you@example.com">
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>

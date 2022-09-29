@@ -83,6 +83,7 @@
 								</div>
 							</li>
 								 @endforeach
+								 <li>{{$producted->links('vendor.pagination.bootstrap-4')}}</li>
              @else
              <li>not Product</li>
              @endif
@@ -92,10 +93,10 @@
 
 					<div class="wrap-pagination-info">
 						<ul class="page-numbers">
-							<li><span class="page-number-item current">{{$producted->links()}}</span></li>
+							
 							
 						</ul>
-						<p class="result-count">Showing 1-8 of 12 result</p>
+						
 					</div>
 				</div><!--end main products area-->
 

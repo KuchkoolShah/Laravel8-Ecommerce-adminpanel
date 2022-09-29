@@ -21,7 +21,7 @@ Route::resource('/checkout', 'OrderController');
 
 Route::group(['as' => 'cart.', 'prefix' => 'cart'], function () {
 	Route::get('/', 'ProductController@cart')->name('all');
-	Route::post('/remove/{product}', 'ProductController@removeProduct')->name('remove');
+	Route::post('/remove/{slug}', 'ProductController@removeProduct')->name('remove');
 	Route::post('/update/{product}', 'ProductController@updateProduct')->name('update');
 });
 

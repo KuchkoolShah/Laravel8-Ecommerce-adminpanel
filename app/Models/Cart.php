@@ -4,8 +4,12 @@ namespace App\Models;
 
 
 
-class Cart
+class Cart  
 {
+      public function Customer() {
+        return $this->belongsTo('App\Models\Customer');
+    }
+
     private $contents;
     private $totalQty;
     private $totalPrice;

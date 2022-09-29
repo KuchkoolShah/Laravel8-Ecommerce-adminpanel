@@ -34,7 +34,7 @@
 							</div>
 							<div class="price-field sub-total"><p class="price">$256.00</p></div>
 							<div class="delete">
-								<form action="{{route('cart.remove', $product)}}" method="POST" accept-charset="utf-8">
+								<form action="{{route('cart.remove', $slug)}}" method="POST" accept-charset="utf-8">
 							@csrf
 
 							<input type="submit" name="remove" value="x Remove" class="btn btn-outline-danger"/>

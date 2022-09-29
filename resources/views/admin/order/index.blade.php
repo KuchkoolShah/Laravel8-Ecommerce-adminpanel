@@ -34,6 +34,7 @@
         <th>Status</th>
         <th>Price</th>
         <th>payement</th>
+         <th>Customer_name</th>
         <th>Date Created</th>
         <th>Actions</th>
       </tr>
@@ -45,11 +46,12 @@
         <td>{{@$order->id}}</td>
        
         <td>{{@$order->user->name}}</td>
-        <td>{{@$order->product_id}}</td>
+        <td>{{@$order->product->name}}</td>
         <td>{{$order->qty}}</td>
         <td class="label label-warning mt-2 pt-4">{{@$order->status}}</td>
         <td>{{@$order->price}}</td>
          <td>{{@$order->payment_id}}</td>
+          <td>{{@$order->customer->billing_lastName}}</td>
          <td>{{@$order->created_at}}</td>
          <td><span data-toggle="tooltip" data-placement="top" title="Edit" class="glyphicon glyphicon-edit">||<span  data-toggle="tooltip" data-placement="top" title="Delete" class="glyphicon glyphicon-trash"></span></span>
          </td>

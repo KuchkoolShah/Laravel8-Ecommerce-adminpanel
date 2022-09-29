@@ -56,7 +56,7 @@
     <!-- Text input -->
     <div class="form-outline mb-4">
         <label class="form-label" for="form6Example4"> Price</label>
-      <input type="text" id="form6Example4" name="regular_price" class="form-control" />
+      <input type="text" id="form6Example4" name="price" class="form-control" />
      
     </div>
      <!-- Text input -->

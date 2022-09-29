@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-       $products = product::all();
+       $products = product::with('categories')->paginate(10);
         return view('admin.Product.index',compact('products'));
     }
 
@@ -73,7 +73,7 @@ class ProductController extends Controller
            'image' => $imageName ,  
             'stock_status'=> $request->stock_status,
             'quantity'=> $request->quantity,
-             'regular_price'=>$request->regular_price,
+             'price'=>$request->price,
           
        ]);
     
@@ -185,7 +185,7 @@ class ProductController extends Controller
    }
 
 
- public function removeProduct(Product $product){
+ public function removeProduct(Product $product , Request $request){
       $oldCart = Session::has('cart') ? Session::get('cart') : null;
       $cart = new Cart($oldCart);
       $cart->removeProduct($product);
