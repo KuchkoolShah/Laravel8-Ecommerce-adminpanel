@@ -43,7 +43,33 @@ class ProfileController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if ($request->hasFile('image')) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->image->move(public_path('uploads'), $imageName);
+                            }
+        $user = User::create([
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'status' => $request->status,
+        ]);
+        if ($user) {
+            $profile = Profile::create([
+                'user_id' => $user->id,
+                'name' => $request->name,
+                'thumbnail' => $imageName,
+                'country_id' => $request->country_id,
+                'state_id' => $request->state_id,
+                'city_id' => $request->city_id,
+                'phone' => $request->phone,
+                'slug' => $request->slug,
+            ]);
+        }
+        if ($user && $profile) {
+            return redirect(route('admin.profile.index'))->with('message', 'User Created Successfully');
+        } else {
+            return back()->with('message', 'Error Inserting new User');
+        }
+
     }
 
     /**

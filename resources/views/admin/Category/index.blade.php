@@ -61,7 +61,8 @@
           @endif
         </td>
    
-                <td> <a href="{{route('admin.category.edit' , $category->id)}}"><span data-toggle="tooltip" data-placement="top" title="Edit" class="glyphicon glyphicon-edit"></span><a>|
+                <td> <a href="{{route('admin.category.edit' , $category->id)}}"><span data-toggle="tooltip" data-placement="top" title="Edit" class="glyphicon glyphicon-edit"></span>
+</a>|
                 <form id="delete-form-{{ $category->id }}" method="post" action="{{ route('admin.category.destroy',$category->id) }}" style="display: none">
                   {{ csrf_field() }}
                   {{ method_field('DELETE') }}
@@ -74,7 +75,9 @@
                     }
                     else{
                       event.preventDefault();
-                    }" ><span  data-toggle="tooltip" data-placement="top" title="Delete" class="glyphicon glyphicon-trash"></span></a></td>
+                    }" ><span  data-toggle="tooltip" data-placement="top" title="Delete" class="glyphicon glyphicon-trash"></span></a>
+                    
+                  </td>
                     
               </tr>
               @endforeach

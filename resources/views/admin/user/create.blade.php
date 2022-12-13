@@ -1,4 +1,5 @@
 @extends('admin.layouts.index');
+
 @section('breadcrumbs')
 <li class="breadcrumb-item"><a href="">Dashboard</a></li>
 <li class="breadcrumb-item "><a href="">users</a></li>
@@ -15,9 +16,11 @@
 
 @endsection
 @section('content')
-<h2 class="modal-title">Add/Edit users</h2>
+<div class="row">
+<div class="col-md-8 col-md-offset-2"> 
+<h2 class="modal-title">Add  users</h2>
 <div class="form-settng"> </div>
-<form  action="" method="post" accept-charset="utf-8" enctype="multipart/form-data" class="ml-5 pl-5">
+<form  action="{{route('admin.profile.store')}}" method="post" accept-charset="utf-8" enctype="multipart/form-data" class="ml-5 pl-5">
 	<div class="row">
 		@csrf
 		
@@ -126,7 +129,7 @@
 			<li class="list-group-item">
 				<div class="input-group mb-3">
 					<div class="custom-file ">
-						<input type="file"  class="custom-file-input" name="thumbnail" id="thumbnail">
+						<input type="file"  class="custom-file-input" name="image" id="thumbnail">
 						<label class="custom-file-label" for="thumbnail">Choose file</label>
 					</div>
 				</div>
@@ -150,6 +153,8 @@
 	</div>
 </div>
 </form>
+
+</div></div>
 @endsection
 @section('scripts')
 

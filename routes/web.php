@@ -21,13 +21,13 @@ Route::resource('/checkout', 'OrderController');
 
 Route::group(['as' => 'cart.', 'prefix' => 'cart'], function () {
 	Route::get('/', 'ProductController@cart')->name('all');
-	Route::post('/remove/{slug}', 'ProductController@removeProduct')->name('remove');
+	Route::post('/remove/{product}', 'ProductController@removeProduct')->name('remove');
 	Route::post('/update/{product}', 'ProductController@updateProduct')->name('update');
 });
 
 /// product
 Route::group(['as' => 'products.', 'prefix' => 'products'], function () {
-	Route::get('show/home', 'ProductController@show_home')->name('home');
+	Route::get('home', 'ProductController@show_home')->name('home');
 	Route::get('about', 'ProductController@about_products')->name('about');
 	Route::get('contact', 'ProductController@contact_products')->name('contact');
 	Route::get('shop', 'ProductController@shop_products')->name('shop');
@@ -78,3 +78,4 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::post('remove', 'CartController@removeCart')->name('cart.remove');
 // Route::post('clear', 'CartController@clearAllCart')->name('cart.clear');
 // Route::get('carted', 'CartController@cartListed')->name('cart.listed');
+

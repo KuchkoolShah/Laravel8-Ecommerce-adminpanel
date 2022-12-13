@@ -37,7 +37,18 @@ class Cart
         $this->totalPrice += $product->price;
 
     }
-    public function removeProduct($product){
+    // public function removeProduct($product){
+    //     if($this->contents){
+    //         if(array_key_exists($product->slug, $this->contents)){
+    //             $rProduct = $this->contents[$product->product];
+    //             $this->totalQty -= $rProduct['qty'];
+    //             $this->totalPrice -= $rProduct['price'];
+    //             array_forget($this->contents, $product->product);
+    //         }
+    //     }
+    // }
+
+      public function removeProduct($product){
         if($this->contents){
             if(array_key_exists($product->slug, $this->contents)){
                 $rProduct = $this->contents[$product->slug];

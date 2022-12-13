@@ -88,6 +88,7 @@ class OrderController extends Controller {
                     "billing_country" => $request->billing_country,
                     "billing_state" => $request->billing_state,
                     "billing_zip" => $request->billing_zip,
+                    
                 ];
             }
       

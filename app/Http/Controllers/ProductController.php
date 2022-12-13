@@ -185,13 +185,22 @@ class ProductController extends Controller
    }
 
 
- public function removeProduct(Product $product , Request $request){
+  public function removeProduct(Product $product){
       $oldCart = Session::has('cart') ? Session::get('cart') : null;
       $cart = new Cart($oldCart);
       $cart->removeProduct($product);
       Session::put('cart', $cart);
       return back()->with('message', "Product $product->title has been successfully removed From the Cart");
    }
+
+   
+ // public function removeProduct(Product $product , Request $request){
+ //      $oldCart = Session::has('cart') ? Session::get('cart') : null;
+ //      $cart = new Cart($oldCart);
+ //      $cart->removeProduct($product);
+ //      Session::put('cart', $cart);
+ //      return back()->with('message', "Product $product->title has been successfully removed From the Cart");
+ //   }
 
         public function cart(){
 

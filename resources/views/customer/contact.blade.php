@@ -21,9 +21,7 @@
 									@csrf
 									<div> 
 									<label for="name">Name<span>*</span></label>
-									<input type="text" value="" id="name" name="name"  value="{{ auth()->user()->name }}
-
-">
+				<input type="text" value="" id="name" name="name"  >
 									@if ($errors->has('name'))
                     <span class="text-danger">{{ $errors->first('name') }}</span>
                 @endif 

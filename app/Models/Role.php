@@ -8,7 +8,10 @@ use  App\Models\User;
 class Role extends Model
 {
     use HasFactory;
-    protected $guarded = [];
+    //protected $guarded = [];
+    protected $fillable = [
+        'name','description',
+    ];
 
      protected $dates = ['deleted_at'];
     

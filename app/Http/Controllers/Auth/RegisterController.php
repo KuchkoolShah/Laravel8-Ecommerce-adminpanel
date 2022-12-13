@@ -70,13 +70,4 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
     }
-
-
-    protected function registered(Request $request, $user) {
-        Profile::create([
-            'user_id' => $user->id,
-            'slug' => $user->id,
-            'thumbnail' => 'image/profile/no-thumbnail.jepg',
-        ]);
-    }
 }
