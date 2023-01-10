@@ -45,7 +45,7 @@
       <tr>
         <td>{{@$order->id}}</td>
        
-        <td>{{@$order->user->name}}</td>
+        <td>{{@$order->customer->billing_lastName}}</td>
         <td>{{@$order->product->name}}</td>
         <td>{{$order->qty}}</td>
         <td class="label label-warning mt-2 pt-4">{{@$order->status}}</td>

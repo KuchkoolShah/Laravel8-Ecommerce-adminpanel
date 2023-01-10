@@ -41,17 +41,14 @@
           <div class="row g-3">
            <div class="col-md-6 mb-3">
                 <label for="firstName">First name</label>
-                <input type="text" name="billing_firstName" class="form-control"   placeholder="" value="{{ auth()->user()->name }}" required="">
-                @if($errors->has('billing_firstName'))
-                  <div class="alert alert-danger">
-                    {{$errors->first('billing_firstName')}}
-                  </div>
-                @endif
+                <input type="text" name="firstName" class="form-control"   placeholder=""  required="">
+                <input type="hidden" name="user_id" class="form-control" value="{{ auth()->user()->id  ?? ''}}"   placeholder=""  required="">
+
               </div>
 
             <div class="col-sm-6">
               <label for="lastName" class="form-label">Last name</label>
-              <input type="text" class="form-control" id="lastName" name="billing_lastName" placeholder="" value="{{ auth()->user()->name }}" required>
+              <input type="text" class="form-control" id="lastName" name="billing_lastName" placeholder="" value="{{ auth()->user()->name  ?? ''}}" required>
               <div class="invalid-feedback">
                 Valid last name is required.
               </div>
@@ -70,7 +67,7 @@
 
             <div class="col-12">
               <label for="email" class="form-label">Email <span class="text-muted">(Optional)</span></label>
-              <input type="email"  name="email" class="form-control" value="{{ auth()->user()->email }}" id="email" placeholder="you@example.com">
+              <input type="email"  name="email" class="form-control" value="{{ auth()->user()->email  ?? '' }}" id="email" placeholder="you@example.com">
               <div class="invalid-feedback">
                 Please enter a valid email address for shipping updates.
               </div>

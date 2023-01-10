@@ -13,4 +13,7 @@ class Customer extends Model
       public function Cart(){
         return $this->hasMany('App\Models\Cart');
     }
+    public function user(){
+    	return $this->belongsTo(User::class);
+    }
 }

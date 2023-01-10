@@ -21,8 +21,31 @@
 						</div>
 						<div class="topbar-menu right-menu">
 							<ul>
-								<li class="menu-item" ><a title="Register or Login" href="{{route('uers.login')}}">Login</a></li>
-								<li class="menu-item" ><a title="Register or Login" href="{{route('uers.register')}}">Register</a></li>
+								
+								@if (Route::has('login'))
+								
+									@auth
+									<li class="menu-item" >{{ Auth::user()->name }}</li>
+									<li class="menu-item" >        <a  href="{{ route('logout') }}"
+										onclick="event.preventDefault();
+													  document.getElementById('logout-form').submit();">
+										 {{ __('Logout') }}
+									 </a>
+ 
+									 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+										 @csrf
+									 </form></li>
+									
+									@else
+									<li class="menu-item"><a  href="{{ route('login') }}" >Login</a></li>
+				
+										@if (Route::has('register'))
+										<li class="menu-item" ><a  href="{{ route('register') }}">Register</a></li>
+	
+										@endif
+									@endauth
+								
+							@endif
 								<li class="menu-item lang-menu menu-item-has-children parent">
 									<a title="English" href="#"><span class="img label-before"><img src="assets/images/lang-en.png" alt="lang-en"></span>English<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 									<ul class="submenu lang" >
@@ -32,37 +55,7 @@
 										<li class="menu-item" ><a title="canada" href="#"><span class="img label-before"><img src="assets/images/lang-can.png" alt="lang-can"></span>Canada</a></li>
 									</ul>
 								</li>
-								 @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item"  style="display: none">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item"  style="display: none">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
+		
 									</ul>
 								</li>
 							</ul>

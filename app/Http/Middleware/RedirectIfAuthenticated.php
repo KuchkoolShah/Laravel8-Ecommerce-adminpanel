@@ -19,13 +19,28 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            if(Auth::user()->role->name == 'admin' ?? '')
-                return redirect('/dashboard');
-            else
-                return redirect('/products/show/home');
-        }
+            //     if (Auth::guard($guard)->check()) {
+            //         if(Auth::user()->role->name == 'admin' ?? '')
+            //             return redirect('/dashboard');
+            //         else
+            //             return redirect('/products/home');
+            //     }
 
-        return $next($request);
-    }
+        //     return $next($request);
+                if (Auth::guard($guard)->check()) {
+                    $role = Auth::user()->role->name == 'admin'; 
+                
+                    switch ($role) {
+                    case 'admin':
+                        return redirect('/dashboard');
+                        break;
+                 
+                
+                    default:
+                        return redirect('/products/home'); 
+                        break;
+                    }
+                }
+                return $next($request);
+     }
 }

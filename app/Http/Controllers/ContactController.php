@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\contact;
 use Illuminate\Http\Request;
 use App\Http\Requests\ContactStore;
+use RealRashid\SweetAlert\Facades\Alert;
 class ContactController extends Controller
 {
     /**

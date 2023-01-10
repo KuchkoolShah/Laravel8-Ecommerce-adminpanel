@@ -40,7 +40,7 @@ Route::group(['as' => 'products.', 'prefix' => 'products'], function () {
 
 
 /// Admin
-Route::group(['as' => 'admin.', 'middleware' => ['auth', 'admin']],  function () {
+Route::group(['as' => 'admin.', 'middleware' => ['auth', 'isAdmin']],  function () {
 	Route::get('/dashboard', 'AdminController@dashboard')->name('dashboard');
 	Route::get('profile/states/{id?}', 'ProfileController@getStates')->name('profile.states');
 	Route::get('profile/cities/{id?}', 'ProfileController@getCities')->name('profile.cities');

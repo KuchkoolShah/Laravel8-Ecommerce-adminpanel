@@ -24,7 +24,7 @@ class StoreOrder extends FormRequest
     public function rules()
     {
       return [
-            "billing_firstName" => 'required',
+            "firstName" => 'required',
             "billing_lastName" => 'required',
             "email" => 'required',
             "billing_address1" => 'required',

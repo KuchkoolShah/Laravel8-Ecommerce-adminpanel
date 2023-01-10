@@ -15,7 +15,7 @@ class CreateCustomersTable extends Migration
     {
         Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
-            $table->string("billing_firstName");
+            $table->string("billing_firstName")->nullable();
             $table->string("billing_lastName");
             $table->string("username");
             $table->string("email");
@@ -31,6 +31,7 @@ class CreateCustomersTable extends Migration
             $table->string("shipping_country")->nullable();
             $table->string("shipping_state")->nullable();
             $table->string("shipping_zip")->nullable();
+            $table->unsignedInteger('user_id');
             $table->timestamps();
            
         });

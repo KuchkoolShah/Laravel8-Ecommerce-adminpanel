@@ -76,7 +76,7 @@
 
                     
 
-                        	<a href="">  <button class="px-4 py-2 text-white bg-blue-800 rounded">Detail View</button></a>
+                        	<a href="{{route('products.detail' , $product->id)}}">  <button class=>Detail View</button></a>
                     
 
 									</div>

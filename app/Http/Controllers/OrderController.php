@@ -12,9 +12,9 @@ use Session;
 
 use Auth;
 class OrderController extends Controller {
-    // public function __construct() {
-    //     $this->middleware('auth');
-    // }
+    public function __construct() {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -59,11 +59,10 @@ class OrderController extends Controller {
        
             if ($request->shipping_address) {
                 $customer = [
-                    "billing_firstName" => $request->billing_firstName,
-                    
+                    "billing_firstName" => $request->firstName,
                     "billing_lastName" => $request->billing_lastName,
-                     "username" => $request->username,
-                    "email" => $request->email,
+                    "username" => $request->username,
+                    "user_id" => $request->user_id, 
                     "billing_address1" => $request->billing_address1,
                     "billing_address2" => $request->billing_address2,
                     "billing_country" => $request->billing_country,
@@ -79,10 +78,11 @@ class OrderController extends Controller {
                 ];
             } else {
                 $customer = [
-                    "billing_firstName" => $request->billing_firstaName,
+                    "billing_firstName" => $request->firstName,
                     "billing_lastName" => $request->billing_lastName,
                     "username" => $request->username,
                     "email" => $request->email,
+                    "user_id" => $request->user_id, 
                     "billing_address1" => $request->billing_address1,
                     "billing_address2" => $request->billing_address2,
                     "billing_country" => $request->billing_country,
@@ -91,7 +91,7 @@ class OrderController extends Controller {
                     
                 ];
             }
-      
+     //dd($customer);
 
         DB::beginTransaction();
         $checkout = Customer::create($customer);
@@ -110,7 +110,7 @@ class OrderController extends Controller {
         if ($checkout && $order) {
             DB::commit();
             $request->session()->forget('cart');
-            return redirect('checkout')->with('message', 'Your Order Successfully Processed');
+            return redirect('products/homel')->with('message', 'Your Order Successfully Processed');
         } else {
             DB::rollback();
             return redirect('checkout')->with('message', 'Invalid Activity!');
