@@ -129,7 +129,7 @@
 			<li class="list-group-item">
 				<div class="input-group mb-3">
 					<div class="custom-file ">
-						<input type="file"  class="custom-file-input" name="image" id="thumbnail">
+						<input type="file"  class="custom-file-input" name="image" id="thumbnail" required autocomplete="">
 						<label class="custom-file-label" for="thumbnail">Choose file</label>
 					</div>
 				</div>

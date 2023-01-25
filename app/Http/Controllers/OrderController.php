@@ -92,12 +92,13 @@ class OrderController extends Controller {
                 ];
             }
      //dd($customer);
-
+                $user = auth()->user();
         DB::beginTransaction();
         $checkout = Customer::create($customer);
         foreach ($cart->getContents() as $slug => $product) {
             $products = [
-                'user_id' => $checkout->id,
+                'user_id' => $user->id,
+    
                 'product_id' => $product['product']->id,
                 'qty' => $product['qty'],
                 'status' => 'Pending',
@@ -110,7 +111,7 @@ class OrderController extends Controller {
         if ($checkout && $order) {
             DB::commit();
             $request->session()->forget('cart');
-            return redirect('products/homel')->with('message', 'Your Order Successfully Processed');
+            return redirect()->route('products.home')->with('message', 'Your Order Successfully Processed');
         } else {
             DB::rollback();
             return redirect('checkout')->with('message', 'Invalid Activity!');

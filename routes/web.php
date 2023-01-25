@@ -10,11 +10,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-	 Alert::success('Page load', 'wellcome to my  website');
+// Route::get('/', function () {
+// 	 Alert::success('Page load', 'wellcome to my  website');
 
-return view('welcome');
-});
+// return view('welcome');
+// });
+Route::get('/', 'ProductController@show_home')->name('products.home');
 
 
 Route::resource('/checkout', 'OrderController');
@@ -27,7 +28,7 @@ Route::group(['as' => 'cart.', 'prefix' => 'cart'], function () {
 
 /// product
 Route::group(['as' => 'products.', 'prefix' => 'products'], function () {
-	Route::get('home', 'ProductController@show_home')->name('home');
+	
 	Route::get('about', 'ProductController@about_products')->name('about');
 	Route::get('contact', 'ProductController@contact_products')->name('contact');
 	Route::get('shop', 'ProductController@shop_products')->name('shop');

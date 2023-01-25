@@ -30,10 +30,6 @@
         <th>#</th>
         <th>Name</th>
         <th>Email</th>
-        <th>Slug</th>
-        <th>role</th>
-        <th>Address</th>
-        <th>Thumbnail</th>
         <th>Date Created</th>
         <th>Actions</th>
       </tr>
@@ -43,12 +39,9 @@
       @foreach($users as $user)
       <tr>
         <td>{{@$user->id}}</td>
-        <td>{{@$user->profile->name}}</td>
+        <td>{{@$user->name}}</td>
         <td>{{@$user->email}}</td>
-        <td>{{@$user->profile->slug}}</td>
-        <td>{{$user->role->name ?? ''}}</td>
-        <td>{{@$user->profile->address}}</td>
-        <td><img src="{{asset('storage/'.@$user->profile->thumbnail)}}" alt="{{@$user->profile->name}}" class="img-responsive" height="50"/></td>
+       
          <td>{{@$user->created_at}}</td>
          <td><span data-toggle="tooltip" data-placement="top" title="Edit" class="glyphicon glyphicon-edit">||<span  data-toggle="tooltip" data-placement="top" title="Delete" class="glyphicon glyphicon-trash"></span></span>
          </td>

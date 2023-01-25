@@ -124,7 +124,7 @@
                         <div class="owl-stage-outer"><div class="owl-stage" style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 1800px;"><div class="owl-item active" style="width: 270px; margin-right: 30px;"><div class="team-member equal-elem" style="height: 377px;">
                                 <div class="media">
                                     <a href="#" title="LEONA">
-                                        <figure><img src="assets/images/member-leona.jpg" alt="LEONA"></figure>
+                                        <figure><img src="{{asset('assets/images/member-leona.jpg')}}" alt="LEONA"></figure>
                                     </a>
                                 </div>
                                 <div class="info">
@@ -135,7 +135,7 @@
                             </div></div><div class="owl-item active" style="width: 270px; margin-right: 30px;"><div class="team-member equal-elem" style="height: 377px;">
                                 <div class="media">
                                     <a href="#" title="LUCIA">
-                                        <figure><img src="assets/images/member-lucia.jpg" alt="LUCIA"></figure>
+                                        <figure><img src="{{asset('assets/images/member-lucia.jpg')}}" alt="LUCIA"></figure>
                                     </a>
                                 </div>
                                 <div class="info">
@@ -146,7 +146,7 @@
                             </div></div><div class="owl-item active" style="width: 270px; margin-right: 30px;"><div class="team-member equal-elem" style="height: 377px;">
                                 <div class="media">
                                     <a href="#" title="NANA">
-                                        <figure><img src="assets/images/member-nana.jpg" alt="NANA"></figure>
+                                        <figure><img src="{{asset('assets/images/member-nana.jpg')}}" alt="NANA"></figure>
                                     </a>
                                 </div>
                                 <div class="info">
@@ -157,7 +157,7 @@
                             </div></div><div class="owl-item active" style="width: 270px; margin-right: 30px;"><div class="team-member equal-elem" style="height: 377px;">
                                 <div class="media">
                                     <a href="#" title="BRAUM">
-                                        <figure><img src="assets/images/member-braum.jpg" alt="BRAUM"></figure>
+                                        <figure><img src="{{asset('assets/images/member-braum.jpg')}}" alt="BRAUM"></figure>
                                     </a>
                                 </div>
                                 <div class="info">
@@ -168,7 +168,7 @@
                             </div></div><div class="owl-item" style="width: 270px; margin-right: 30px;"><div class="team-member equal-elem" style="height: 377px;">
                                 <div class="media">
                                     <a href="#" title="LUCIA">
-                                        <figure><img src="assets/images/member-lucia.jpg" alt="LUCIA"></figure>
+                                        <figure><img src="{{asset('assets/images/member-lucia.jpg')}}" alt="LUCIA"></figure>
                                     </a>
                                 </div>
                                 <div class="info">
@@ -179,7 +179,7 @@
                             </div></div><div class="owl-item" style="width: 270px; margin-right: 30px;"><div class="team-member equal-elem" style="height: 377px;">
                                 <div class="media">
                                     <a href="#" title="NANA">
-                                        <figure><img src="assets/images/member-nana.jpg" alt="NANA"></figure>
+                                        <figure><img src="{{asset('assets/images/member-nana.jpg')}}" alt="NANA"></figure>
                                     </a>
                                 </div>
                                 <div class="info">

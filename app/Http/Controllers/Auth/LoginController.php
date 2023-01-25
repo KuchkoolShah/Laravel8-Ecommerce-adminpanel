@@ -27,7 +27,7 @@ class LoginController extends Controller
      * @var string
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/products/home';
+    protected $redirectTo = '/products/shop';
   
 
     protected function redirectTo()
@@ -36,7 +36,7 @@ class LoginController extends Controller
         {
           return 'dashboard ';  // admin dashboard path
         } else {
-          return '/products/home';  // member dashboard path
+          return '/products/shop';  // member dashboard path
         }
       }
        /**

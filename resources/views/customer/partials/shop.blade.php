@@ -64,7 +64,7 @@
 							<li class="col-lg-4 col-md-6 col-sm-6 col-xs-6 ">
 								<div class="product product-style-3 equal-elem " style="height: 388px;">
 									<div class="product-thumnail">
-										<a href="detail.html" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
+										<a href="" title="T-Shirt Raw Hem Organic Boro Constrast Denim">
 											<figure><img src= "{{asset('uploads/'.$product->image) }}"  class="img-fluid" width="100%"> </figure>
 										</a>
 									</div>

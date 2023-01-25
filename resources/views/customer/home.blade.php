@@ -57,7 +57,7 @@
                         </div>
                         <div class="product-info">
                             <a href="#" class="product-name"><span>{{$products->name}}</span></a>
-                            <div class="wrap-price"><span class="product-price">${{$products->regular_price}}</span></div>
+                            <div class="wrap-price"><span class="product-price">${{$products->price}}</span></div>
                         </div>
                     </div>
                         @endforeach
@@ -99,7 +99,7 @@
                         </div>
                         <div class="product-info">
                             <a href="#" class="product-name"><span>{{$product->name}}</span></a>
-                            <div class="wrap-price"><span class="product-price">${{$product->regular_price}}</span></div>
+                            <div class="wrap-price"><span class="product-price">${{$product->price}}</span></div>
                         </div>
                     </div>
                         @endforeach

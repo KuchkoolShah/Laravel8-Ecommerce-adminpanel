@@ -27,7 +27,7 @@ class LoginController extends Controller
      * @var string
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
-    protected $redirectTo = '/products/home';
+    protected $redirectTo = '/products/shop';
     // public function redirectTo() {
     //     $role = Auth::user()->role->name == 'admin'; 
     //     switch ($role) {
@@ -51,7 +51,7 @@ if(Auth::user()->role =='admin'){
 
 if (Auth::user()->role == 'customer'){
 
-  return '/products/home'; 
+  return '/products/shop'; 
 
 }
 else {
